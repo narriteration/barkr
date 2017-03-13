@@ -2,7 +2,9 @@
   var mongoose = require('mongoose');
   var Schema = mongoose.Schema;
 
+
   var Owner = require('./owner');
+
 
   var DogSchema = new Schema({
     dogName: String,
@@ -14,8 +16,7 @@
     isBig: Boolean,
     isSocialized: Boolean,
     imgDog:String
-
-  })
+  });
 
   var Dog = mongoose.model('Dog', DogSchema);
   module.exports = Dog;

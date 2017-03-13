@@ -1,0 +1,22 @@
+{
+  "name": "barkr",
+  "version": "1.0.0",
+  "description": "Jesse and Chelsea's Project 1 - WDI 36",
+  "main": "seed.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/narriteration/barkr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/narriteration/barkr/issues"
+  },
+  "homepage": "https://github.com/narriteration/barkr#readme"
+}

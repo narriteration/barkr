@@ -35,3 +35,13 @@ var ownersList = [
     imgOwner: "https://www.saama.com/wp-content/uploads/2015/09/headshot_Surdak.png"
   }
 ];
+
+db.Owner.remove({}, function(err, owners){
+  console.log("removed owners "+ owners);
+  db.Owner.create(ownersList, function (err, owners){
+    if(err){
+      return console.log("error creating" +err);
+    }
+    console.log("created "  +ownersList.length + " owners: " + owners);
+  });
+});

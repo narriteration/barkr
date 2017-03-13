@@ -67,7 +67,7 @@ function destroy(req, res){
   db.Dog.findOneAndRemove({dogId},function(err,deleteDog){
     if(err){
       console.log("error deleting" +err);
-    } res.json(deleteDog;)
+    } res.json(deleteDog);
   });
 };
 

@@ -1,17 +1,18 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-  var Owner = require('./owner');
+
+
 
 
   var OwnerSchema = new Schema({
-    name:String,
+    ownerName:String,
     isSingle: Boolean,
     gender:String,
     age:Number,
-    imgUrl:String,
+    imgOwner:String,
     email:String
-  })
+  });
 
   var Owner = mongoose.model('Owner', OwnerSchema);
 

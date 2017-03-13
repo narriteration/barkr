@@ -2,8 +2,17 @@
   "name": "barkr",
   "version": "1.0.0",
   "description": "Jesse and Chelsea's Project 1 - WDI 36",
+<<<<<<< HEAD
   "main": "seed.js",
   "dependencies": {},
+=======
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.8.7"
+  },
+>>>>>>> master
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

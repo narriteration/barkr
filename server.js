@@ -27,9 +27,9 @@ app.delete('/api/dogs/:dogId', controllers.dog.destroy);
 
 app.put('/api/dogs/:dogId', controllers.dog.update);
 
+app.put('/api/owners/:ownerId', controllers.owner.update);
 
-// create owner
-//app.post('/api/dogs/:dogId/owner', controllers.owner.create);
+app.delete('/api/owners/:ownerId', controllers.owner.destroy);
 
 
 

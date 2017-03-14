@@ -1,4 +1,5 @@
 module.exports = {
   api: require('./apiController'),
-  dog: require('./dogsController')
+  dog: require('./dogsController'),
+  owner: require('./ownersController')
 };

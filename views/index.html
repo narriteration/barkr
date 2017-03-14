@@ -7,15 +7,15 @@
   <title>Barkr App</title>
 
   <!-- STYLESHEETS -->
-  <!-- jQuery -->
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/styles.css">
+
   <!-- VENDOR SCRIPTS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <!-- APPLICATION SCRIPTS -->
-  <script src="scripts/app.js"></script>
-
+  <script src="/scripts/app.js"></script>
 </head>
 <body>
   <div class="container">
@@ -44,18 +44,24 @@
             <input type="text" class="form-control" name="imgDog" placeholder="please enter img URL">
           </div>
           <br>
-      </div>
-    </div>
+
     <h1 class="text-center">Owner</h1>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-2">
+
           <div class="form-group">
-            <label style="font-size:20px" for="title">Owner's Name</label>
-            <input type="text" class="form-control" name="ownerName" placeholder="Please enter full name here">
+            <label style="font-size:20px" for="ownerName">New Owner</label>
+            <input type="text" class="form-control" name="ownerName" placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label style="font-size:20px" for="human">Exisiting Owner</label>
+            <input type="text" class="form-control" name="human" placeholder="Full name">
           </div>
           <div class="form-group">
             <label for="gender">Gender</label>
             <input type="text" class="form-control" name="gender" placeholder="Enter gender here or N/A">
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" class="form-control" name="age" placeholder="Only enter numbers here">
           </div>
           <div class="form-group">
             <label for="age">Email</label>
@@ -66,7 +72,7 @@
             <input type="text" class="form-control" name="imgOwner" placeholder="PLease enter img URL">
           </div>
           <br>
-          <button type="submit" class="btn btn-default">Create Doggy profile</button>
+          <button type="submit" class="btn btn-default dogPost">Create Doggy profile</button>
         </form>
       </div>
     </div>
@@ -93,7 +99,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Are you sure you want to delete this Book??</h4>
+              <h4 class="modal-title">Are you sure you want to delete this Dog??</h4>
             </div>
             <div class="modal-body">
 
@@ -108,7 +114,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-danger" id="deleteBook">Delete Book</button>
+              <button type="button" class="btn btn-danger" id="deleteDog">Delete Book</button>
             </div>
           </div><!-- /.modal-content -->
       </div><!-- /.modal -->

@@ -24,6 +24,30 @@ var dogsList = [
     isSocialized:true,
     human:"Jenny Smith",
     imgDog: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-culture/022063-3d-transparent-glass-icon-culture-book3-open.png"
+  },
+  {
+    dogName:"Lil pup",
+    breed: "Rotwieller",
+    isBig:true,
+    isSocialized:false,
+    human:"Jim Kelly",
+    imgDog: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-culture/022063-3d-transparent-glass-icon-culture-book3-open.png"
+  },
+  {
+    dogName:"Goofy",
+    breed: "Poodle",
+    isBig:true,
+    isSocialized:true,
+    human:"Johnny Walker",
+    imgDog: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-culture/022063-3d-transparent-glass-icon-culture-book3-open.png"
+  },
+  {
+    dogName:"Ricky the Pooch",
+    breed: "Bermiese Mountain dog",
+    isBig:true,
+    isSocialized:false,
+    human:"Tommy Tables",
+    imgDog: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-culture/022063-3d-transparent-glass-icon-culture-book3-open.png"
   }
 
 ];
@@ -41,6 +65,20 @@ var ownersList = [
     gender:"Male",
     age:32,
     email:"Jim@google.com",
+    imgOwner: "https://www.saama.com/wp-content/uploads/2015/09/headshot_Surdak.png"
+  },
+  {
+    ownerName:"Johnny Walker",
+    gender:"Male",
+    age:27,
+    email:"Johny@google.com",
+    imgOwner: "https://www.saama.com/wp-content/uploads/2015/09/headshot_Surdak.png"
+  },
+  {
+    ownerName:"Tommy Tables",
+    gender:"Male",
+    age:82,
+    email:"Tommy@hotmail.com",
     imgOwner: "https://www.saama.com/wp-content/uploads/2015/09/headshot_Surdak.png"
   }
 ];

@@ -6,12 +6,17 @@ var Owner = require('./owner');
 var DogSchema = new Schema({
     dogName: String,
     breed: String,
-    human: [Owner.schema],
+     human: //[Owner.schema],
+    {
+      type:Schema.Types.ObjectId,
+      ref: "Owner"
+    },
     isBig: Boolean,
     isSocialized: Boolean,
     imgDog: String
 
 });
+
 
 var Dog = mongoose.model('Dog', DogSchema);
 module.exports = Dog;

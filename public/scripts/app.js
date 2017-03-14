@@ -1,46 +1,124 @@
 console.log("Sanity Check: JS is working!");
-
+ var allDogs = [];
 $(document).ready(function(){
 
   var $dogTarget = $('#dogTarget')
   $.ajax({
     method: 'GET',
     url: '/api/dogs',
-    success: handleSuccess,
-    error: handleError
+    success: handleGetSuccess,
+    error: handleGetError
   });
 
 
+  $('#newDogForm').on('submit', function(e){
+    e.preventDefault();
+    $.ajax({
+      method:"POST",
+      url:'/api/dogs',
+      data:$(this).serializeArray(),
+      success:NewDogSuccess,
+      error:NewDogError
+    })
+  });
 
+  function NewDogSuccess(data){
+    allDogs.push(data);
+    console.log("success booking  " + data.human);
+    $('#newDogForm input').val('');
+    render();
+    $('[data-dog-id='+data._id+']')[0].scrollIntoView();
+
+  };
+  function NewDogError(err){
+    console.log("errrorrr" +err);
+  };
 
 
   function getDogHtml(dog) {
-    // var authorString =book.author.map(renderAuthor);
     return `<hr>
             <p>
-            <div class='row dog' data-dog-id = ${dog._id}>
+            <div class='col-md-6 row dog border text-center' data-dog-id = ${dog._id}>
             <img src="../images/bookPic.png" alt="book image">
+            <br/>
               <b>${dog.dogName}</b>
-              has bredd of ${dog.breed}. is good with dogs: ${dog.isSocialized}. dog is big: ${dog.isBig}, here is image of dog:  ${dog.imgDog}.
+              is a ${(dog.isBig === true ? 'large' : 'small')} ${dog.breed}.
               <br/>
+              ${dog.dogName} is ${(dog.isSocialized === true ? 'great' : 'not very good')} with other dogs.
+              <br/>
+              </p>
               </div>
-              </p>`;
+              <div class = 'col-md-6 row dog border text-center' data-dog-id = ${dog._id}>
               <img src="../images/authorPic.png" alt="author image">
-              The author is ${(book.author) ? book.author.name : 'null'}
-               . They are ${(book.author) ? (book.author.alive === true ? 'alive': 'dead') : 'null'}
-              , and are ${(book.author) ? book.author.age : 'null'} years old.
-              <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>
-              </div>
-            </p>;
+              <br/>
+                <b>${(dog.human) ? dog.human.ownerName : 'null'}</b>
+                is a ${(dog.human) ? dog.human.age : 'null'} year old ${(dog.human) ? dog.human.gender : 'null'}.
+                <br/>
+                Email is ${(dog.human) ? dog.human.email : 'null'}.
+                </p>
+                </div>
+                <button id="update" class="btn btn-info update-dog" type="update">
+                <span class="label">Update Dog</span>
+                <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button id="delete" class="btn btn-danger delete-dog" type="delete">
+                <span class="label">Delete</span>
+                <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              `;
+  };
+  function getAllDogsHtml(dogs){
+    return dogs.map(getDogHtml);
+    console.log("going through all books");
   }
+  function render(){
+    $dogTarget.empty();
+    var allHtml = getAllDogsHtml(allDogs);
+    $dogTarget.append(allHtml);
+  };
+  function handleGetSuccess(data){
+    allDogs = data;
+    render();
+  };
+  function handleGetError(err){
+    console.log("bummer error" +err);
+    $dogTarget.text("failed to load, server working?")
+  };
+
+  $('#dogTarget').on('click', '.delete-dog', handleDeleteClick);
 
 
+  function handleDeleteClick(e){
+    var id = $(this).closest('.dog').data('dog-id')
+    console.log("clicked delete for"+id);
+    $('#deleteModal').data('dog-id',id);
+    $('#deleteModal').modal();
+    console.log("modal pop up");
+    };
 
+    $('#deleteDog').on('click', function deleteButton(e){
+      var id = $('#deleteModal').data('dog-id');
+      console.log('id is ' + id);
+      $.ajax({
+        method:"DELETE",
+        url: '/api/dogs/' + id,
+        success: handleDeleteSuccess,
+        error: handleDeleteError,
+      });
+    function handleDeleteSuccess(e){
+      $('#deleteModal').modal('hide');
+      $(this).closest('.dog').empty();
+      $.get('/api/dogs/'+id, function(data){
+        //remove current instance of album
+        $('[data-dog-id=' + id + ']').fadeOut();
+           //re-render album
+        getDogHtml(e);
+          });
+          console.log("dog deleted");
+    }
+    function handleDeleteError(e){
+      console.log(e + 'error');
+    }
+    });
 
-
-
-
-
-
-
-})//end document ready
+  })//end document ready

@@ -3,8 +3,8 @@ var mongoose = require('mongoose'),
 
   var OwnerSchema = new Schema({
     ownerName:String,
-    //isSingle: Boolean,
     gender:String,
+    //isSingle: Boolean,
     age:Number,
     imgOwner:String,
     email:String

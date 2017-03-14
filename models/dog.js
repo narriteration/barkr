@@ -7,7 +7,7 @@
   var DogSchema = new Schema({
     dogName: String,
     breed: String,
-    owner:{
+    human:{
       type:Schema.Types.ObjectId,
       ref: "Owner"
     },

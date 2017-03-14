@@ -26,7 +26,7 @@ $(document).ready(function(){
               </div>
               </p>`;
               <img src="../images/authorPic.png" alt="author image">
-              The author is ${(book.author) ? book.author.name : 'null'}
+              The author is ${(dog.human) ? dog.human.ownderName : 'null'}
                . They are ${(book.author) ? (book.author.alive === true ? 'alive': 'dead') : 'null'}
               , and are ${(book.author) ? book.author.age : 'null'} years old.
               <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${book._id}>Delete</button>

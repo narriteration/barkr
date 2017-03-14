@@ -30,7 +30,6 @@ function show(req,res) {
 function create(req, res) {
   var newDog = new db.Dog({
     dogName:req.body.dogName,
-    // human: req.body.human,
     breed: req.body.breed,
     isBig: req.body.isBig,
     isSocialized: req.body.isSocialized,

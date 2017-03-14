@@ -7,15 +7,12 @@
   var DogSchema = new Schema({
     dogName: String,
     breed: String,
-    human:{
-      type:Schema.Types.ObjectId,
-      ref: "Owner"
-    },
+    human: [Owner.schema],
     isBig: Boolean,
     isSocialized: Boolean,
     imgDog:String
 
-  })
+  });
 
   var Dog = mongoose.model('Dog', DogSchema);
   module.exports = Dog;

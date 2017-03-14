@@ -25,10 +25,12 @@ app.post('/api/dogs', controllers.dog.create);
 
 app.delete('/api/dogs/:dogId', controllers.dog.destroy);
 
-//app.put('/api/dogs/:dogId', controllers.dog.update);
+app.put('/api/dogs/:dogId', controllers.dog.update);
+
 
 // create owner
 //app.post('/api/dogs/:dogId/owner', controllers.owner.create);
+
 
 
 

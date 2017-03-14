@@ -3,7 +3,7 @@ var db = require('../models');
 // GET /api/dogs
 function index(req, res) {
   db.Dog.find({})
-  .populate('owner')
+  .populate('human')
   .exec(function(err,dogs){
     if(err){
       console.log("error getting dogs"+ err);
@@ -16,7 +16,7 @@ function index(req, res) {
 function show(req,res) {
   var id = req.params.dogId;
   db.Dog.findById(id)
-  .populate('owner')
+  .populate('human')
   .exec(function(err,foundDog){
     if(err){
       console.log("error geting by id"+err);
@@ -27,21 +27,21 @@ function show(req,res) {
 
 // POST /api/dogs
 function create(req, res) {
-  var newDog = {
+  var newDog = new db.Dog({
     dogName:req.body.dogName,
-    owner: req.body.owner,
+    human: req.body.human,
     breed: req.body.breed,
     isBig: req.body.isBig,
     isSocialized: req.body.isSocialized,
     imgDog: req.body.imgDog
-  }
-  db.Owner.findOne({ownerName:req.body.owner}, function(err, owner){
-    newDog.owner = owner;
+  });
+  db.Owner.findOne({ownerName:req.body.human}, function(err, human){
+    newDog.human = human;
     newDog.save(function(err,dog){
       if(err){
         console.log("error saving " + err);
       }
-      if (owner === null){
+      if (human === null){
         db.Owner.create({ownerName:req.body.ownerName, gender:req.body.gender, age:req.body.age, email:req.body.email, imgOwner:req.body.imgOwner}, function(err,newOwner){
           createDogAndOwner(newDog, newOwner, res)
         });
@@ -51,7 +51,7 @@ function create(req, res) {
     });
   });
   function createDogAndOwner(dog,owner,res){
-    dog.owner = owner;
+    dog.human = owner;
     dog.save(function(err, dog){
       if (err){
         return console.log("error saving" + err);
@@ -64,7 +64,7 @@ function create(req, res) {
 //DELETE /api/dogs/:dogId
 function destroy(req, res){
   var dogId = req.params.dogId;
-  db.Dog.findOneAndRemove({dogId},function(err,deleteDog){
+  db.Dog.findOneAndRemove({_id:dogId},function(err,deleteDog){
     if(err){
       console.log("error deleting" +err);
     } res.json(deleteDog);

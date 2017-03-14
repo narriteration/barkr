@@ -8,6 +8,7 @@ function index(req, res) {
     if(err){
       console.log("error getting dogs"+ err);
     }
+    console.log(dogs);
     res.json(dogs);
   });
 };

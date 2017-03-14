@@ -1,92 +1,118 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Barkr App</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- STYLESHEETS -->
+  <!-- jQuery -->
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/styles.css">
+  <!-- VENDOR SCRIPTS -->
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <!-- local css file -->
-    <link rel="stylesheet" href="../public/styles/main.css">
-
-    <!-- <script src="js/bootstrap.min.js"></script> -->
-
-    <title>barkr | dog-dating</title>
+  <!-- APPLICATION SCRIPTS -->
+  <script src="scripts/app.js"></script>
 
 </head>
-
 <body>
+  <div class="container">
+    <h1 class="text-center">Doggy Details</h1>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-2">
+        <form class="form-inline" id ="newDogForm">
+          <div class="form-group">
+            <label style="font-size:20px" for="title">Name</label>
+            <input type="text" class="form-control" name="dogName" placeholder="Dogs Name">
+          </div>
+          <div class="form-group">
+            <label for="breed">Breed</label>
+            <input type="text" class="form-control" name="breed" placeholder="Breed">
+          </div>
+          <div class="form-group">
+            <label for="isBig">Is it a big dog?</label>
+            <input type="text" class="form-control" name="isBig" placeholder="True or false">
+          </div>
+          <div class="form-group">
+            <label for="isSocialized">Plays Well with Others?</label>
+            <input type="text" class="form-control" name="isSocialized" placeholder="True or false">
+          </div>
+          <div class="form-group">
+            <label for="imgDog">Upload a pic here!</label>
+            <input type="text" class="form-control" name="imgDog" placeholder="please enter img URL">
+          </div>
+          <br>
+      </div>
+    </div>
+    <h1 class="text-center">Owner</h1>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-2">
+          <div class="form-group">
+            <label style="font-size:20px" for="title">Owner's Name</label>
+            <input type="text" class="form-control" name="ownerName" placeholder="Please enter full name here">
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" class="form-control" name="gender" placeholder="Enter gender here or N/A">
+          </div>
+          <div class="form-group">
+            <label for="age">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="Enter your personal email here">
+          </div>
+          <div class="form-group">
+            <label for="imgOwner">Photo of yourself</label>
+            <input type="text" class="form-control" name="imgOwner" placeholder="PLease enter img URL">
+          </div>
+          <br>
+          <button type="submit" class="btn btn-default">Create Doggy profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-    <div class="site-wrapper">
+  <!-- <div class="row">
+  <div class="col-lg-6">
+      <div class="input-group">
+        <input type="text" id="searchBox" class="form-control" placeholder="Enter a book title">
+        <span class="input-group-btn">
+          <button class="btn btn-default" id="search" type="button">Search</button>
+        </span>
+      </div></input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div><!-- /.row --> -->
 
-        <div class="site-wrapper-inner">
+  <div id='dogTarget'>
+  </div>
 
-            <div class="container">
 
-                <div class="masthead clearfix">
-                    <div class="container inner">
-                        <h3 class="masthead-brand"></h3>
-                        <nav>
-                            <ul class="nav masthead-nav">
-                                <li>
-                                    <button type="button" class="btn btn-default" aria-label="Map">
-                                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                                        </span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-default" aria-label="Sign In">
-                                        <span class="glyphicon glyphicon-user" aria-hidden="true">
-                                        </span>
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-default" aria-label="Create Profile">
-                                        <span class="glyphicon glyphicon-plus" aria-hidden="true">
-                                        </span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+
+      <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Are you sure you want to delete this Book??</h4>
+            </div>
+            <div class="modal-body">
+
+              <fieldset class='form-horizontal'>
+
+
+                <div class="form-group">
+                  <label class="col-md-8 control-label">This action is permanent and cannot be undone</label>
                 </div>
-
-                <div class="inner cover">
-                    <h1 class="cover-heading">barkr</h1>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <p class="lead">
-                        <a href="#" class="btn btn-lg btn-default">Meet some pups!</a>
-                    </p>
-                </div>
-
-                <div class="container inner">
-                    <h3 class="masthead-brand"></h3>
-                    <nav>
-                        <ul class="nav masthead-nav">
-                            <li>
-                              <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true">Rosenbloom | Mangold 2017</span>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+              </fieldset>
 
             </div>
-        </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-danger" id="deleteBook">Delete Book</button>
+            </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal -->
     </div>
-</body>
 
-</html>
+
+</body>

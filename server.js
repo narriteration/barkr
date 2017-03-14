@@ -25,7 +25,7 @@ app.post('/api/dogs', controllers.dog.create);
 
 app.delete('/api/dogs/:dogId', controllers.dog.destroy);
 
-//app.put('/api/dogs/:dogId', controllers.dog.update);
+app.put('/api/dogs/:dogId', controllers.dog.update);
 
 
 

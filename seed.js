@@ -23,6 +23,7 @@ var dogsList = [
     isBig:true,
     isSocialized:true,
     human:"Jenny Smith",
+
     imgDog: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-culture/022063-3d-transparent-glass-icon-culture-book3-open.png"
   },
   {
@@ -47,6 +48,7 @@ var dogsList = [
     isBig:true,
     isSocialized:false,
     human:"Tommy Tables",
+
     imgDog: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-culture/022063-3d-transparent-glass-icon-culture-book3-open.png"
   }
 
@@ -108,7 +110,6 @@ db.Owner.remove({}, function(err, owners){
           return  console.log("error finding owner "+err);
           }
           dog.human = foundOwner;
-          console.log('LOOKK!!!!!!' + dog.human);
           dog.save(function(err,savedDog){
             if(err){
               return console.log("err saving " + err);

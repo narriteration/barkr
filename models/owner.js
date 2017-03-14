@@ -1,15 +1,15 @@
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
-  var OwnerSchema = new Schema({
-    ownerName:String,
-    gender:String,
+var OwnerSchema = new Schema({
+    ownerName: String,
+    gender: String,
     //isSingle: Boolean,
-    age:Number,
-    imgOwner:String,
-    email:String
-  })
+    age: Number,
+    imgOwner: String,
+    email: String
+})
 
-  var Owner = mongoose.model('Owner', OwnerSchema);
+var Owner = mongoose.model('Owner', OwnerSchema);
 
-  module.exports = Owner;
+module.exports = Owner;

@@ -29,19 +29,34 @@
           </div>
           <div class="form-group">
             <label for="breed">Breed</label>
-            <input type="text" class="form-control" name="breed" placeholder="Breed">
+            <input type="text" class="form-control" name="breed" placeholder="Breed of dog">
           </div>
-          <div class="form-group">
-            <label for="isBig">Is it a big dog?</label>
-            <input type="text" class="form-control" name="isBig" placeholder="True or false">
-          </div>
-          <div class="form-group">
-            <label for="isSocialized">Plays Well with Others?</label>
-            <input type="text" class="form-control" name="isSocialized" placeholder="True or false">
+            <div class="form-group">
+            <div class="radio">
+              <label>
+                <input type="radio" name="isBig" required>
+                Big Dog
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="isBig" required>
+                Small Dog
+              </label>
+            </div>
           </div>
           <div class="form-group">
             <label for="imgDog">Upload a pic here!</label>
             <input type="text" class="form-control" name="imgDog" placeholder="please enter img URL">
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name = "isSocialized" data-error="Before you wreck yourself" required>
+                Plays well with Others?
+              </label>
+              <div class="help-block with-errors"></div>
+            </div>
           </div>
           <br>
 
@@ -51,21 +66,22 @@
             <label style="font-size:20px" for="ownerName">New Owner</label>
             <input type="text" class="form-control" name="ownerName" placeholder="Full name">
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label style="font-size:20px" for="human">Exisiting Owner</label>
             <input type="text" class="form-control" name="human" placeholder="Full name">
-          </div>
+          </div> -->
           <div class="form-group">
             <label for="gender">Gender</label>
             <input type="text" class="form-control" name="gender" placeholder="Enter gender here or N/A">
           </div>
           <div class="form-group">
             <label for="age">Age</label>
-            <input type="text" class="form-control" name="age" placeholder="Only enter numbers here">
+            <input type="number" pattern="[0-9]" data-maxlength = "4" class="form-control" name="age" placeholder="Enter your age here" data-error="Please enter Valid Age" required>
           </div>
           <div class="form-group">
             <label for="age">Email</label>
-            <input type="text" class="form-control" name="email" placeholder="Enter your personal email here">
+            <input type="email" class="form-control" name="email" placeholder="Email " data-error = "Enter valid email" required>
+            <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
             <label for="imgOwner">Photo of yourself</label>

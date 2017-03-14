@@ -3,7 +3,7 @@ var db = require('../models');
 // GET /api/dogs
 function index(req, res) {
   db.Dog.find({})
-  .populate('owner')
+  .populate('human')
   .exec(function(err,dogs){
     if(err){
       console.log("error getting dogs"+ err);
@@ -17,7 +17,7 @@ function index(req, res) {
 function show(req,res) {
   var id = req.params.dogId;
   db.Dog.findById(id)
-  .populate('owner')
+  .populate('human')
   .exec(function(err,foundDog){
     if(err){
       console.log("error geting by id"+err);

@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/book-app");
+  var mongoose = require('mongoose');
+  mongoose.connect("mongodb://localhost/barkr");
 
-//grab all of models here for the DB
-module.exports.Dog = require('./dog.js')
-module.exports.Owner = require('./owner.js')
+  module.exports.Dog = require('./dog.js')
+  module.exports.Owner = require('./owner.js')
+

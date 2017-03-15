@@ -21,6 +21,16 @@ $(document).ready(function(){
         });
     });
 
+    $('#login-form').on('submit', function signup(e){
+        e.preventDefault();
+        var loginData = $('#login-form').serialize();
+        console.log(loginData);
+        $.post('/sessions', loginData, function(res){
+          console.log(res);
+        });
+    });
+
+
 
     $('#newDogForm').on( 'submit' , function (e) {
       e.preventDefault();

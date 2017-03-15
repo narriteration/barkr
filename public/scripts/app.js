@@ -14,19 +14,19 @@ $(document).ready(function(){
        e.preventDefault();
        var signupData = $('#signup-form').serialize();
        console.log("before ajax" + signupData);
-       $.post('/owner', signupData, function(res){
+       $.post('/api/owners', signupData, function(res){
          console.log("signup form", res);
        });
     });
 
-    $('#login-form').on('submit', function signup(e){
-        e.preventDefault();
-        var loginData = $('#login-form').serialize();
-        console.log(loginData);
-        $.post('/sessions', loginData, function(res){
-          console.log(res);
-        });
-    });
+    // $('#login-form').on('submit', function signup(e){
+    //     e.preventDefault();
+    //     var loginData = $('#login-form').serialize();
+    //     console.log(loginData);
+    //     $.post('/sessions', loginData, function(res){
+    //       console.log(res);
+    //     });
+    // });
 
 
 

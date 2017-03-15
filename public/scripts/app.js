@@ -47,8 +47,7 @@ $(document).ready(function(){
               ${dog.dogName} is ${(dog.isSocialized === true ? 'great' : 'not very good')} with other dogs.
               <br/>
               </p>
-              </div>
-              <div class = 'col-md-6 row dog border text-center' data-dog-id = ${dog._id}>
+
               <img src="../images/authorPic.png" alt="author image">
               <br/>
                 <b>${(dog.human) ? dog.human.ownerName : 'null'}</b>
@@ -56,15 +55,15 @@ $(document).ready(function(){
                 <br/>
                 Email is ${(dog.human) ? dog.human.email : 'null'}.
                 </p>
-                </div>
-                <button id="update" class="btn btn-info update-dog" type="update">
-                <span class="label">Update Dog</span>
-                <span class="glyphicon glyphicon-pencil"></span>
-                </button>
                 <button id="delete" class="btn btn-danger delete-dog" type="delete">
                 <span class="label">Delete</span>
                 <span class="glyphicon glyphicon-trash"></span>
                 </button>
+                <button id="update" class="btn btn-info update-dog" type="update">
+                <span class="label">Update Dog</span>
+                <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                </div>
               `;
   };
   function getAllDogsHtml(dogs){

@@ -7,7 +7,8 @@ var mongoose = require('mongoose'),
     //isSingle: Boolean,
     age:Number,
     imgOwner:String,
-    email:String
+    email:String,
+    password: String
   })
 
   var Owner = mongoose.model('Owner', OwnerSchema);

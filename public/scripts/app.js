@@ -48,25 +48,26 @@ $(document).ready(function(){
                     ${dog.dogName} is ${(dog.isSocialized === true ? 'great' : 'not very good')} with other dogs.
                     <br/>
                 </div>
-              </p>
+            </p>
 
-              <div class = 'col-md-6 row dog border text-center' data-dog-id = ${dog._id}>
-                  <img src="../images/authorPic.png" alt="author image">
-                  <br/>
-                  <b>${(dog.human) ? dog.human.ownerName : 'null'}</b> is a ${(dog.human) ? dog.human.age : 'null'} year old ${(dog.human) ? dog.human.gender : 'null'}.
-                  <br/>
-                  Email is ${(dog.human) ? dog.human.email : 'null'}.
-                  </p>
-              </div>
+            <div class = 'col-md-6 row dog border text-center' data-dog-id = ${dog._id}>
+                <img src="../images/authorPic.png" alt="author image">
+                <br/>
+                <b>${(dog.human) ? dog.human.ownerName : 'null'}</b> is a ${(dog.human) ? dog.human.age : 'null'} year old ${(dog.human) ? dog.human.gender : 'null'}.
+                <br/>
+                Email is ${(dog.human) ? dog.human.email : 'null'}.
+                </p>
+            </div>
 
-              <button id="update" class="btn btn-info update-dog" type="update">
-                  <span class="label">Update Dog</span>
-                  <span class="glyphicon glyphicon-pencil"></span>
-              </button>
-              <button id="delete" class="btn btn-danger delete-dog" type="delete">
-                  <span class="label">Delete</span>
-                  <span class="glyphicon glyphicon-trash"></span>
-              </button>
+            <button id="update" class="btn btn-info update-dog" type="update">
+                <span class="label">Update Dog</span>
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+
+            <button id="delete" class="btn btn-danger delete-dog" type="delete"> <!-- delete button-->
+                <span class="label">Delete</span>
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
               `;
   };
 

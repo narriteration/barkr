@@ -4,11 +4,14 @@ mongoose = require('mongoose');
 
 var app = express();
 var db = require('./models');
-// TODO: need to require /owner.js??
+var Owner = require('./models/owner');
 
 var controllers = require('./controllers');
 
 app.use(express.static('public'));
+
+app.set('view engine', 'ejs')
+
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs');
 mongoose.createConnection('mongodb://localhost/barkr');
@@ -21,12 +24,14 @@ app.get('/', function(req, res) {
         root: __dirname
     });
 });
-
 app.get('/api', controllers.api.index);
 
 app.get('/api/dogs', controllers.dog.index);
 
+app.get('/api/owners', controllers.owner.index);
+
 app.get('/api/dogs/:dogId', controllers.dog.show);
+// SIGNUP ROUTE
 
 app.get('/signup', function (req, res) {
   res.render('signup');
@@ -41,13 +46,6 @@ app.get('/login', function (req, res) {
 app.post('/api/dogs', controllers.dog.create);
 
 app.post('/api/owners', controllers.owner.create);
-
-app.post('/owners', function (req, res) {
-    db.Owner.createSecure(req.body.email, req.body.password, function(err, newOwnerCreated){
-    // console.log('request body: ', req.body);
-    res.json(newOwnerCreated);
-    });
-});
 
 app.post('/sessions', function (req, res) {
     var ownerEmail = db.Owner.email
@@ -70,8 +68,13 @@ app.put('/api/dogs/:dogId', controllers.dog.update);
 app.put('/api/owners/:ownerId', controllers.owner.update);
 
 
+// Sign up route - creates a new user with a secure password
+app.post('/owner', controllers.owner.create);
+app.delete('/api/owners/:ownerId', controllers.owner.destroy);
 
-////////// CONNECT TO LOCAL HOST ////////////////
+
+
+
 
 app.listen(3000, function() {
     console.log('Barkr app listening at http://localhost:3000/');

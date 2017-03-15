@@ -30,7 +30,31 @@ OwnerSchema.statics.createSecure = function (newOwner, cb) {
   });
 };
 
+OwnerSchema.methods.checkPassword = function (password) {
+  console.log("IN CHECK PASSWORD , CHECKING ", password)
+  return bcrypt.compare(password, this.passwordDigest);
+};
 
+// authenticate user (when user logs in)
+OwnerSchema.statics.authenticate = function (email, password, cb) {
+  // find user by email entered at log in
+  // remember `this` refers to the User for methods defined on UserSchema.statics
+  this.findOne({email: email}, function (err, foundOwner) {
+    if(err){return console.log("AUTHENTICATE ERR: ", err);}
+    console.log("FOUND OWNER: ", foundOwner);
+
+    // throw error if can't find user
+    if (!foundOwner) {
+      console.log('No user with email ' + email);
+      cb("Error: no user found", null);  // better error structures are available, but a string is good enough for now
+    // if we found a user, check if password is correct
+  } else if (foundOwner.checkPassword(password)) {
+      cb(null, foundOwner);
+    } else {
+      cb("Error: incorrect password", null);
+    }
+  });
+};
 
 
 

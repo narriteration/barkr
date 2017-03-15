@@ -1,6 +1,7 @@
 var express = require('express'),
 bodyParser = require('body-parser'),
-mongoose = require('mongoose');
+mongoose = require('mongoose'),
+session = require('express-session');
 
 var app = express();
 var db = require('./models');
@@ -9,10 +10,22 @@ var Owner = require('./models/owner');
 var controllers = require('./controllers');
 
 app.use(express.static('public'));
+
+app.use(session({
+  saveUninitialized: true,
+  resave: true,
+  secret: 'pinkRhinosAndBedbugs',
+  cookie: { maxAge: 30 * 60 * 1000 } // 30 minute cookie lifespan (in milliseconds)
+}));
+
 app.set('view engine', 'ejs')
+
 app.use(bodyParser.urlencoded({extended: true}))
+app.set('view engine', 'ejs');
 mongoose.createConnection('mongodb://localhost/barkr');
 
+
+// GET routes
 
 app.get('/', function(req, res) {
     res.sendFile('views/index.html', {
@@ -27,20 +40,55 @@ app.get('/api/owners', controllers.owner.index);
 
 app.get('/api/dogs/:dogId', controllers.dog.show);
 // SIGNUP ROUTE
+
 app.get('/signup', function (req, res) {
   res.render('signup');
 });
 
 app.get('/login', function (req, res) {
-    // REPLACE WITH ACTUAL RES.
-    res.send('login coming soon');
+    res.render('login');
 });
+
+// show user profile page
+app.get('/profile', function (req, res) {
+  // find the user currently logged in
+  db.Owner.findOne({_id: req.session.ownerId}, function (err, currentOwner) {
+    console.log("current user is: ",currentOwner);
+    res.render('profile.ejs', {owner: currentOwner});
+  });
+});
+
+// POST routes
 
 app.post('/api/dogs', controllers.dog.create);
 
+app.post('/api/owners', controllers.owner.create);
 
+app.post('/api/owners', function(req, res){
+
+})
+
+app.post('/sessions', function (req, res) {
+    // db.Owner.findOne({email: req.body.email}, function(err, foundOne){
+    console.log("LOGIN : ", req.body.email);
+    console.log("PASSWORD: ", req.body.password);
+        db.Owner.authenticate(req.body.email, req.body.password, function(err, owner){
+        console.log("sessions: " , owner);
+        req.session.ownerId = owner._id; // correct?
+        //res.json(owner);
+        res.redirect('/profile');
+      });
+});
+
+
+
+// DELETE routes
 
 app.delete('/api/dogs/:dogId', controllers.dog.destroy);
+
+app.delete('/api/owners/:ownerId', controllers.owner.destroy);
+
+// PUT  routes
 
 app.put('/api/dogs/:dogId', controllers.dog.update);
 
@@ -50,6 +98,7 @@ app.put('/api/owners/:ownerId', controllers.owner.update);
 // Sign up route - creates a new user with a secure password
 app.post('/owner', controllers.owner.create);
 app.delete('/api/owners/:ownerId', controllers.owner.destroy);
+
 
 
 

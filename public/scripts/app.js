@@ -47,7 +47,8 @@ $(document).ready(function(){
               ${dog.dogName} is ${(dog.isSocialized === true ? 'great' : 'not very good')} with other dogs.
               <br/>
               </p>
-
+              </div>
+              <div class='col-md-6 row dog border text-center' data-dog-id = ${dog._id}>
               <img src="../images/authorPic.png" alt="author image">
               <br/>
                 <b>${(dog.human) ? dog.human.ownerName : 'null'}</b>

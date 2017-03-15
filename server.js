@@ -1,5 +1,6 @@
 var express = require('express'),
-bodyParser = require('body-parser');
+bodyParser = require('body-parser'),
+mongoose = require('mongoose');
 
 var app = express();
 var db = require('./models');
@@ -7,19 +8,32 @@ var db = require('./models');
 var controllers = require('./controllers');
 
 app.use(express.static('public'));
-
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}))
+mongoose.createConnection('mongodb://localhost/barkr');
+
 
 app.get('/', function(req, res) {
     res.sendFile('views/index.html', {
         root: __dirname
     });
 });
+
 app.get('/api', controllers.api.index);
 
 app.get('/api/dogs', controllers.dog.index);
 
 app.get('/api/dogs/:dogId', controllers.dog.show);
+
+// signup route with placeholder response
+app.get('/signup', function (req, res) {
+  res.render('signup');
+});
+
+// login route with placeholder response
+app.get('/login', function (req, res) {
+  res.send('login coming soon');
+});
 
 app.post('/api/dogs', controllers.dog.create);
 

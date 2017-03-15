@@ -4,24 +4,33 @@ console.log( "Sanity Check: JS is working!" );
 // DOC READY
 $(document).ready(function(){
 
-  var $dogTarget = $('#dogTarget')
-  $.ajax({
-    method: 'GET',
-    url: '/api/dogs',
-    success: handleGetSuccess,
-    error: handleGetError
-  });
-
-
-  $('#newDogForm').on( 'submit' , function (e) {
-    e.preventDefault();
-    $.ajax ({
-      method: "POST",
+    var $dogTarget = $('#dogTarget')
+    $.ajax({
+      method: 'GET',
       url: '/api/dogs',
-      data:$( this ).serializeArray(),
-      success: NewDogSuccess,
-      error: NewDogError
-    })
+      success: handleGetSuccess,
+      error: handleGetError
+    });
+
+    $('#signup-form').on('submit', function signup(e){
+        e.preventDefault();
+        var signupData = $('#signup-form').serialize();
+        console.log(signupData);
+        $.post('/owners', signupData, function(res){
+          console.log(res);
+        });
+    });
+
+
+    $('#newDogForm').on( 'submit' , function (e) {
+      e.preventDefault();
+      $.ajax ({
+        method: "POST",
+        url: '/api/dogs',
+        data: $( this ).serializeArray(),
+        success: NewDogSuccess,
+        error: NewDogError
+      })
   });
 
   function NewDogSuccess(data){
@@ -82,14 +91,18 @@ $(document).ready(function(){
     var allHtml = getAllDogsHtml(allDogs);
     $dogTarget.append(allHtml);
   };
+
   function handleGetSuccess(data){
     allDogs = data;
     render();
   };
+
+
   function handleGetError(err){
     console.log("bummer error" +err);
     $dogTarget.text("failed to load, server working?")
   };
+
 
   $('#dogTarget').on('click', '.delete-dog', handleDeleteClick);
 

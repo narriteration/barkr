@@ -10,6 +10,26 @@ function destroy(req, res){
   });
 };
 
+//POST /api/owners
+function create(req, res){
+  var newOwner = new db.Owner({
+    ownerName: req.body.ownerName,
+    gender: req.body.gender,
+    age:req.body.age,
+    imgOwner:req.body.imgOwner,
+    email:req.body.email,
+    password:req.body.password
+  });
+  newOwner.save(function(err,person){
+    if (err){
+        console.log("error saving" + err);
+    }
+    console.log("saved " + person);
+    res.json(person);
+  });
+};
+
+
 //Updating owner at /api/owners/:ownerId
 function update(req, res){
   var ownerId = req.params.ownerId;
@@ -32,5 +52,6 @@ function update(req, res){
 
 module.exports = {
   destroy:destroy,
-  update:update
+  update:update,
+  create:create,
 };

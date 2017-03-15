@@ -1,36 +1,34 @@
-console.log( "Sanity Check: JS is working!" );
+console.log("Sanity Check: JS is working!");
  var allDogs = [];
-
-// DOC READY
 $(document).ready(function(){
 
-    var $dogTarget = $('#dogTarget')
+  var $dogTarget = $('#dogTarget')
+  $.ajax({
+    method: 'GET',
+    url: '/api/dogs',
+    success: handleGetSuccess,
+    error: handleGetError
+  });
+
+  $('#signup-form').on('submit', function signup(e){
+       e.preventDefault();
+       var signupData = $('#signup-form').serialize();
+       console.log("before ajax" + signupData);
+       $.post('/owner', signupData, function(res){
+         console.log("signup form", res);
+       });
+    });
+
+
+  $('#newDogForm').on('submit', function(e){
+    e.preventDefault();
     $.ajax({
-      method: 'GET',
-      url: '/api/dogs',
-      success: handleGetSuccess,
-      error: handleGetError
-    });
-
-    $('#signup-form').on('submit', function signup(e){
-        e.preventDefault();
-        var signupData = $('#signup-form').serialize();
-        console.log(signupData);
-        $.post('/owners', signupData, function(res){
-          console.log(res);
-        });
-    });
-
-
-    $('#newDogForm').on( 'submit' , function (e) {
-      e.preventDefault();
-      $.ajax ({
-        method: "POST",
-        url: '/api/dogs',
-        data: $( this ).serializeArray(),
-        success: NewDogSuccess,
-        error: NewDogError
-      })
+      method:"POST",
+      url:'/api/dogs',
+      data:$(this).serializeArray(),
+      success:NewDogSuccess,
+      error:NewDogError
+    })
   });
 
   function NewDogSuccess(data){
@@ -49,7 +47,6 @@ $(document).ready(function(){
   function getDogHtml(dog) {
     return `<hr>
             <p>
-
             <div class='col-md-6 row dog border text-center' data-dog-id = ${dog._id}>
             <img src="../images/bookPic.png" alt="book image">
             <br/>
@@ -77,12 +74,8 @@ $(document).ready(function(){
                 <span class="glyphicon glyphicon-pencil"></span>
                 </button>
                 </div>
-
               `;
   };
-
-  //////////////////// FUNCTIONS BELOW //////////////////////
-
   function getAllDogsHtml(dogs){
     return dogs.map(getDogHtml);
     console.log("going through all books");
@@ -92,18 +85,14 @@ $(document).ready(function(){
     var allHtml = getAllDogsHtml(allDogs);
     $dogTarget.append(allHtml);
   };
-
   function handleGetSuccess(data){
     allDogs = data;
     render();
   };
-
-
   function handleGetError(err){
     console.log("bummer error" +err);
     $dogTarget.text("failed to load, server working?")
   };
-
 
   $('#dogTarget').on('click', '.delete-dog', handleDeleteClick);
 

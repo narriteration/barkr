@@ -10,14 +10,13 @@ function destroy(req, res){
   });
 };
 
+//
 function index(req, res){
   db.Owner.find({}, function (err, users){
     res.json(users);
   });
 };
 
-// db.Owner.createSecure(req.body, function(err, newOwnerCreated){
-// res.json(newOwnerCreated);
 //POST /api/owners
 function create(req, res){
   var newOwner = {
@@ -32,12 +31,14 @@ function create(req, res){
   db.Owner.createSecure(newOwner, function handleNewOwner(err, succ){
     if (err){
       console.log("error saving" + err);
+      alert("Oops, there was an error saving your profile: ", err);
     }
     console.log("saved " + succ.passwordDigest);
     res.json(succ);
+    alert("Hooray! You successfully created your barkr profile!");
+
   });
 }
-
 
 //Updating owner at /api/owners/:ownerId
 function update(req, res){
@@ -51,14 +52,16 @@ function update(req, res){
     found.imgOwner = req.body.imgOwner;
     found.save(function(err, person){
       if(err){
-        console.log(err+"erororr");
+        console.log("There was an error updating your profile: ", err);
       }
-      console.log("yay!!" + person);
+      console.log("Successfully updated profile: ", person);
       res.json(person);
+      alert("Hooray! You successfully updated your barkr profile, " + found.ownerName);
     });
   });
 };
 
+// Export all modules
 module.exports = {
   destroy:destroy,
   update:update,

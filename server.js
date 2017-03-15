@@ -38,6 +38,19 @@ app.get('/api/dogs', controllers.dog.index);
 
 app.get('/api/owners', controllers.owner.index);
 
+app.get('/api/owners', function(req, res){
+  res.redirect('/sessions');
+});
+// // db.Owner.findOne({email: req.body.email}, function(err, foundOne){
+// console.log("LOGIN : ", req.body.email);
+// console.log("PASSWORD: ", req.body.password);
+//     db.Owner.authenticate(req.body.email, req.body.password, function(err, owner){
+//     console.log("sessions: " , owner);
+//     req.session.ownerId = owner._id; // correct?
+//     //res.json(owner);
+//     res.redirect('/profile');
+
+
 app.get('/api/dogs/:dogId', controllers.dog.show);
 // SIGNUP ROUTE
 
@@ -62,11 +75,34 @@ app.get('/profile', function (req, res) {
 
 app.post('/api/dogs', controllers.dog.create);
 
-app.post('/api/owners', controllers.owner.create);
+app.post('/api/owners', function create(req, res){
+  var newOwner = {
+    ownerName: req.body.ownerName,
+    gender: req.body.gender,
+    age:req.body.age,
+    imgOwner:req.body.imgOwner,
+    email:req.body.email,
+    password:req.body.password,
+  };
 
-app.post('/api/owners', function(req, res){
+  db.Owner.createSecure(newOwner, function handleNewOwner(err, succ){
+    if (err){
+      console.log("error saving" + err);
+    }
+    console.log("saved " + succ.passwordDigest);
 
-})
+
+    db.Owner.authenticate(newOwner.email, newOwner.password, function(err, owner){
+      console.log("sessions: " , owner);
+      req.session.ownerId = owner._id; // correct?
+      //res.json(owner);
+      res.redirect('/profile');
+    });
+
+  });
+});
+
+
 
 app.post('/sessions', function (req, res) {
     // db.Owner.findOne({email: req.body.email}, function(err, foundOne){

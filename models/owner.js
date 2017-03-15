@@ -42,7 +42,7 @@ OwnerSchema.statics.authenticate = function (email, password, cb) {
   this.findOne({email: email}, function (err, foundOwner) {
     if(err){return console.log("AUTHENTICATE ERR: ", err);}
     console.log("FOUND OWNER: ", foundOwner);
-
+    
     // throw error if can't find user
     if (!foundOwner) {
       console.log('No user with email ' + email);
@@ -55,6 +55,8 @@ OwnerSchema.statics.authenticate = function (email, password, cb) {
     }
   });
 };
+
+
 
 
 

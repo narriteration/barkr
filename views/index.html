@@ -2,40 +2,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
 
-    <title>Barkr App</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- VENDOR SCRIPTS -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-    <!-- APPLICATION SCRIPTS -->
-    <script src="/scripts/app.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- Local CSS file -->
+  <link rel="stylesheet" href="../public/styles/main.css">
 </head>
 
 <body>
 
     <div class="container">
-        <h1 class="text-center">Doggy Details</h1>
+        <h1 class="text-center clr-lightgreen">barkr</h1>
+        <hr>
+        <h3 class="text-center">Tell us more about your pup...</h3>
+        <br>
         <div class="row">
             <div class="col-md-6 col-md-offset-2">
 
                 <form class="form-inline" id="newDogForm">
 
                       <div class="form-group">
-                          <label style="font-size:20px" for="title">Name</label>
-                          <input type="text" class="form-control" name="dogName" placeholder="Dogs Name">
+                          <label for="title letters-spaced">Name</label>
+                          <input type="text" class="form-control" name="dogName" placeholder="Pookie">
                       </div>
 
                       <div class="form-group">
                           <label for="breed">Breed</label>
-                          <input type="text" class="form-control" name="breed" placeholder="Breed of dog">
+                          <input type="text" class="form-control" name="breed" placeholder="Golden Retriever">
                       </div>
 
                     <div class="form-group">
@@ -51,7 +62,7 @@
 
                     <div class="form-group">
                         <label for="imgDog">Upload a pic here!</label>
-                        <input type="text" class="form-control" name="imgDog" placeholder="please enter img URL">
+                        <input type="text" class="form-control" name="imgDog" placeholder="Select an online image you like, and paste the URL here">
                     </div>
 
                     <div class="form-group">
@@ -73,14 +84,6 @@
 
     </div>
 
-    <!-- <div class="row">
-  <div class="col-lg-6">
-      <div class="input-group">
-        <input type="text" id="searchBox" class="form-control" placeholder="Enter a book title">
-        <span class="input-group-btn">
-          <button class="btn btn-default" id="search" type="button">Search</button>
-        </span>
-      </div></input-group -->
     </div>
     <!-- /.col-lg-6 -->
     </div>

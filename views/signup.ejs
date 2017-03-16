@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- bootstrap css -->
-  <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="/scripts/app.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- Local CSS file -->
+  <link rel="stylesheet" href="../public/styles/main.css">
 
   <title>Signup</title>
 </head>
@@ -20,10 +34,40 @@
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
 
+              <!-- Begin Heading -->
+              <div class="masthead clearfix">
+                  <div class="container inner">
+                      <h3 class="masthead-brand"></h3>
+                      <nav>
+                          <ul class="nav masthead-nav">
+                              <li>
+                                  <button type="button" class="btn btn-default" aria-label="Map">
+                                      <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+                                      </span>
+                                  </button>
+                              </li>
+                              <li>
+                                  <button type="button" class="btn btn-default" aria-label="Sign In">
+                                      <span class="glyphicon glyphicon-user" aria-hidden="true">
+                                      </span>
+                                  </button>
+                              </li>
+                              <li>
+                                  <button type="button" class="btn btn-default" aria-label="Create Profile">
+                                      <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                                      </span>
+                                  </button>
+                              </li>
+                          </ul>
+                      </nav>
+                  </div>
+              </div>
+              <!-- End Heading -->
+
               <form id="signup-form" method="POST" action="api/owners" data-toggle="validator" role="form">
 
-
-                  <h1 class="text-center">Sign Up</h1>
+                  <h1 class="cover-heading clr-lightgreen">barkr</h1>
+                  <h3 class="text-center">Sign Up</h3>
                   <h3 class="text-center">Please complete the following to sign up for barkr</h3>
 
                   <hr>

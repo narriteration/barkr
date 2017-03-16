@@ -7,7 +7,11 @@ dog-name {
   text: bold
 }
 /* Links */
-
+a,
+a:hover,
+a:active {
+  color: #59f442;
+}
 
 
 /* Custom default button */
@@ -42,6 +46,15 @@ body {
   background-image: url(../images/justin-veenema-156592.jpg);
   background-size: cover;
   /*background-position: center;*/
+}
+
+h1 {
+  font-size: 8em;
+}
+
+.letters-spaced {
+  letter-spacing: 1px;
+
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */

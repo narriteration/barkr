@@ -28,7 +28,7 @@ mongoose.createConnection('mongodb://localhost/barkr');
 // GET routes
 
 app.get('/', function(req, res) {
-    res.sendFile('views/index.html', {
+    res.sendFile('views/splashPage.html', {
         root: __dirname
     });
 });
@@ -37,6 +37,8 @@ app.get('/api', controllers.api.index);
 app.get('/api/dogs', controllers.dog.index);
 
 app.get('/api/owners', controllers.owner.index);
+
+//app.get('/api/owners/:ownerId', controllers.owner.show)
 
 app.get('/api/owners', function(req, res){
   res.redirect('/sessions');
@@ -67,11 +69,22 @@ app.get('/login', function (req, res) {
 // show user profile page
 app.get('/profile', function (req, res) {
   // find the user currently logged in
+
   db.Owner.findOne({_id: req.session.ownerId}, function (err, currentOwner) {
     console.log("current user is: ",currentOwner);
     res.render('profile.ejs', {owner: currentOwner});
+    // $('#profileDiv').append(currentOwner.age);
   });
 });
+
+app
+//
+// app.get('/dogs', function (req,res){
+//   var id = req.session.ownerId;
+//   db.Dog.find({human: id}, function(err, dogs){
+//     res.render('profile.ejs', {dogs:dogs})
+//  });
+// });
 
 // POST routes
 
@@ -95,10 +108,10 @@ app.post('/api/owners', function create(req, res){
 
 
     db.Owner.authenticate(newOwner.email, newOwner.password, function(err, owner){
-      console.log("sessions: " , owner);
       req.session.ownerId = owner._id; // correct?
       //res.json(owner);
       res.redirect('/profile');
+      console.log("sessions: owner herehehrh!!!!!!!!LOOK " , owner);
     });
 
   });
@@ -111,10 +124,10 @@ app.post('/sessions', function (req, res) {
     console.log("LOGIN : ", req.body.email);
     console.log("PASSWORD: ", req.body.password);
         db.Owner.authenticate(req.body.email, req.body.password, function(err, owner){
-        console.log("sessions: " , owner);
         req.session.ownerId = owner._id; // correct?
         //res.json(owner);
         res.redirect('/profile');
+        console.log("sessions: OOOK HWRERE!!!! " , owner);
       });
 });
 

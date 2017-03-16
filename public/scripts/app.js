@@ -3,12 +3,20 @@ console.log("Sanity Check: JS is working!");
  var allDogs = [];
 $(document).ready(function(){
 
-  var $dogTarget = $('#dogTarget')
+  var $dogTarget = $('#dogTarget');
   $.ajax({
     method: 'GET',
-    url: '/api/dogs',
+    url: '/feed',
     success: handleGetSuccess,
     error: handleGetError
+  });
+
+  var $newProfileDog = $('#newProfileDog');
+  $.ajax({
+    method: 'GET',
+    url: '/api/owners/:ownerId',
+    success: handleGetProfileSucc,
+    error: handleGetProfileError
   });
 
   // $('#signup-form').on('submit', function signup(e){
@@ -163,7 +171,6 @@ $(document).ready(function(){
       isSocialized : isSocialized
   };
 
-
     $.ajax({
       method:"PUT",
       url:'/api/dogs/' + id,
@@ -205,6 +212,10 @@ $(document).ready(function(){
               <span class="label">Save Changes</span>
               <span class="glyphicon glyphicon-ok"></span>
               </button>
+              <button id="delete" class="btn btn-danger delete-dog" type="delete">
+              <span class="label">Delete Dog</span>
+              <span class="glyphicon glyphicon-trash"></span>
+              </button>
               </div>
               <div class='col-sm-6 row owner border text-center' data-human-id =${(dog.human) ? dog.human._id : 'null'}>
               <img src="../images/authorPic.png" alt="author image">
@@ -221,10 +232,6 @@ $(document).ready(function(){
                 <button id="saveOwner" class="btn btn-info save-owner hidden" type="save">
                 <span class="label">Save Changes</span>
                 <span class="glyphicon glyphicon-ok"></span>
-                </button>
-                <button id="delete" class="btn btn-danger delete-dog" type="delete">
-                <span class="label">Delete Dog</span>
-                <span class="glyphicon glyphicon-trash"></span>
                 </button>
                 </div>
               `;
@@ -245,19 +252,28 @@ $(document).ready(function(){
 
   }
   function handleGetSuccess(data){
-    allDogs = data;
     render();
+    console.log("rendderring!!!");
+    //res.render('feed');
   };
+
   function handleGetError(err){
     console.log("bummer error" +err);
     $dogTarget.text("failed to load, server working?")
   };
-
-
+function handleGetProfileSucc(data){
+  var newDog = getDogHtml(data);
+  $('#newProfileDog').append(newDog);
+}
+function handleGetProfileError(err){
+  console.log("bummer error" +err);
+};
 
   function handleDeleteClick(e){
-    var id = $(this).closest('.dog').data('dog-id')
+    var id = $(this).closest('.dog').data('dog-id');
+    var ownerid = $(this).children('.owner').data('owner-id');
     console.log("clicked delete for"+id);
+    console.log("clicked for " +ownerid);
     $('#deleteModal').data('dog-id',id);
     $('#deleteModal').modal();
     console.log("modal pop up");
@@ -275,6 +291,7 @@ $(document).ready(function(){
     function handleDeleteSuccess(e){
       $('#deleteModal').modal('hide');
       $(this).closest('.dog').empty();
+      //$(this).sibling('.owner').empty();
       $.get('/api/dogs/'+id, function(data){
         //remove current instance of album
         $('[data-dog-id=' + id + ']').fadeOut();

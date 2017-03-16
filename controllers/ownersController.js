@@ -40,6 +40,17 @@ function create(req, res){
   });
 }
 
+
+function show(req, res){
+  //var ownerId = req.params.ownerId;
+  // find all dogs who have owner id under human attribute
+  db.Dog.find({human: ownerId}, function(err, dogs){
+    // if success, render a view with all dogs.
+    res.send({dogs: dogs});
+  });
+}
+
+
 //Updating owner at /api/owners/:ownerId
 function update(req, res){
   var ownerId = req.params.ownerId;
@@ -68,4 +79,5 @@ module.exports = {
   update:update,
   create:create,
   index:index,
+  show:show
 };

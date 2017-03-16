@@ -1,9 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- <script>dogs = <%= dogs %> </script> -->
+    <script src="public/scripts/feed.js"></script>
 
   </head>
     <div id='dogTarget'>
+      <ul>
+      <%= dogs %>
+      <% for(var i=0; i<dogs.length; i++) { %>
+                <p>
+                <div class='col-sm-6 row dog border text-center' data-dog-id = <%= dogs[i]._id %> >
+                <img src="<%= dogs[i].imgDog %>" alt="book image">
+                <br/>
+                  <span class='dog-name'><%=dogs[i].dogName%></span>
+                  is a <span class='dog-size'><%=(dogs[i].isBig === true ? 'large' : 'small')%></span><span class='dog-breed'> <%=dogs[i].breed%></span>.
+                  <br/>
+                  They are <span class='dog-temper'><%=(dogs[i].isSocialized === true ? 'great' : 'not very good')%></span> with other dogs.
+                  <br/>
+                  </p>
+                  <button id="updateDog" class="btn btn-info update-dog" type="update">
+                  <span class="label">Update Dog</span>
+                  <span class="glyphicon glyphicon-pencil"></span>
+                  </button>
+                  <button id="saveDog" class="btn btn-info save-dog hidden" type="save">
+                  <span class="label">Save Changes</span>
+                  <span class="glyphicon glyphicon-ok"></span>
+                  </button>
+                  <button id="delete" class="btn btn-danger delete-dog" type="delete">
+                  <span class="label">Delete Dog</span>
+                  <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                  </div>
+                  <div class='col-sm-6 row owner border text-center' data-human-id =<%=(dogs[i].human) ? dogs[i].human._id : 'null'%>>
+                  <img src="<%= dogs[i].human.imgOwner %>" alt="author image">
+                  <br/>
+                    <b><span class='owner-name'><%=(dogs[i].human) ? dogs[i].human.ownerName : 'null'%></span></b>
+                    is a <span class ='owner-age'><%=(dogs[i].human) ? dogs[i].human.age : 'null'%></span> year old <span class='owner-gender'><%=(dogs[i].human) ? dogs[i].human.gender : 'null'%></span>.
+                    <br/>
+                    Email is <span class='email'><%=(dogs[i].human) ? dogs[i].human.email : 'null'%><span>.
+                    </p>
+                    <button id="updateOwner" class="btn btn-info update-owner" type="update">
+                    <span class="label">Update Owner</span>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button id="saveOwner" class="btn btn-info save-owner hidden" type="save">
+                    <span class="label">Save Changes</span>
+                    <span class="glyphicon glyphicon-ok"></span>
+                    </button>
+                    </div>
+          <% } %>
+
+    </ul>
     </div>
   </body>
 </html>

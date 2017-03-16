@@ -6,32 +6,33 @@ function index(req, res) {
   .populate('human')
   .exec(function(err,dogs){
     if(err){
-      console.log("error getting dogs"+ err);
+      console.log("error getting dogs" + err);
     }
-    console.log(dogs);
+    console.log("ZEEEES AREEE ZEE DOGSS" + dogs);
     //res.json(dogs);
     // res.sendFile('views/feed.ejs');
-    res.render('feed.ejs', {dogs: dogs})
+    res.render('feed.ejs',{dogs: dog})
+
   });
 };
 
 //GET /api/dogs/friendly
-var nice = [];
-var naughty = [];
-function showFriendly(req, res){
-  db.Dog.find({})
-  .populate('human')
-  .exec(function(dogs){
-    dogs.forEach(function(dog){
-      if(dog.isSocialized === true){
-        nice.push(dog);
-      }else{
-        naughty.push(dog);
-      }
-    });
-    res.json(nice);
-  });
-};
+// var nice = [];
+// var naughty = [];
+// function showFriendly(req, res){
+//   db.Dog.find({})
+//   .populate('human')
+//   .exec(function(dogs){
+//     dogs.forEach(function(dog){
+//       if(dog.isSocialized === true){
+//         nice.push(dog);
+//       }else{
+//         naughty.push(dog);
+//       }
+//     });
+//     res.json(nice);
+//   });
+// };
 
 // GET /api/dogs/:dogId
 function show(req,res) {
@@ -63,6 +64,7 @@ function create(req, res) {
         console.log("error saving " + err);
       }
       if (human === null){
+        //alert("please enter valid owners name");
         db.Owner.create({ownerName:req.body.ownerName, gender:req.body.gender, age:req.body.age, email:req.body.email, imgOwner:req.body.imgOwner}, function(err,newOwner){
           createDogAndOwner(newDog, newOwner, res)
         });
@@ -151,5 +153,5 @@ module.exports = {
   show:show,
   update:update,
   destroy:destroy,
-  showFriendly:showFriendly,
+
 };

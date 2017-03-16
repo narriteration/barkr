@@ -70,6 +70,7 @@ app.get('/profile', function (req, res) {
   db.Owner.findOne({_id: req.session.ownerId}, function (err, currentOwner) {
     console.log("current user is: ",currentOwner);
     res.render('profile.ejs', {owner: currentOwner});
+    $('#profileDiv').append(currentOwner.age);
   });
 });
 

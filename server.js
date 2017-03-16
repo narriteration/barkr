@@ -55,7 +55,7 @@ app.get('/api/owners', function(req, res){
 
 app.get('/api/dogs/:dogId', controllers.dog.show);
 
-app.get('/api/dogs/friendly', controllers.dog.showFriendly);
+// app.get('/api/dogs/friendly', controllers.dog.showFriendly);
 // SIGNUP ROUTE
 
 app.get('/signup', function (req, res) {
@@ -77,7 +77,7 @@ app.get('/profile', function (req, res) {
   });
 });
 
-app
+
 //
 // app.get('/dogs', function (req,res){
 //   var id = req.session.ownerId;

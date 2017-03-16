@@ -6,7 +6,7 @@ $(document).ready(function(){
   var $dogTarget = $('#dogTarget');
   $.ajax({
     method: 'GET',
-    url: '/feed',
+    url: '/api/dogs',
     success: handleGetSuccess,
     error: handleGetError
   });
@@ -196,7 +196,7 @@ $(document).ready(function(){
     return `<hr>
             <p>
             <div class='col-sm-6 row dog border text-center' data-dog-id = ${dog._id} >
-            <img src="../images/bookPic.png" alt="book image">
+            <img src="${dog.imgDog}" alt="book image">
             <br/>
               <span class='dog-name'>${dog.dogName}</span>
               is a <span class='dog-size'>${(dog.isBig === true ? 'large' : 'small')}</span><span class='dog-breed'> ${dog.breed}</span>.
@@ -218,7 +218,7 @@ $(document).ready(function(){
               </button>
               </div>
               <div class='col-sm-6 row owner border text-center' data-human-id =${(dog.human) ? dog.human._id : 'null'}>
-              <img src="../images/authorPic.png" alt="author image">
+              <img src="${(dog.human) ? dog.human.imgOwner : 'null'}" alt="author image">
               <br/>
                 <b><span class='owner-name'>${(dog.human) ? dog.human.ownerName : 'null'}</span></b>
                 is a <span class ='owner-age'>${(dog.human) ? dog.human.age : 'null'}</span> year old <span class='owner-gender'>${(dog.human) ? dog.human.gender : 'null'}</span>.

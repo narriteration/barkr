@@ -11,50 +11,28 @@ $(document).ready(function(){
     error: handleGetError
   });
 
-  // $('#signup-form').on('submit', function signup(e){
-  //      e.preventDefault();
-  //      var signupData = $('#signup-form').serialize();
-  //      console.log("before ajax" + signupData);
-  //      $.post('/api/owners', signupData, function(res){
-  //        console.log("signup form", res);
-  //      });
-  //   });
-
-
-
-
-    // $('#login-form').on('submit', function signup(e){
-    //     e.preventDefault();
-    //     var loginData = $('#login-form').serialize();
-    //     console.log(loginData);
-    //     $.post('/sessions', loginData, function(res){
-    //       console.log(res);
-    //     });
-    // });
-
-
-
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
     $.ajax({
       method:"POST",
       url:'/api/dogs',
       data:$(this).serializeArray(),
-      success:NewDogSuccess,
-      error:NewDogError
+      success:newDogSuccess,
+      error:newDogError
     })
   });
 
-  function NewDogSuccess(data){
+  function newDogSuccess(data){
     allDogs.push(data);
-    console.log("success booking  " + data.human);
+    console.log("newDogSuccess in app.js: " + data.human);
     $('#newDogForm input').val('');
     render();
-    $('[data-dog-id='+data._id+']')[0].scrollIntoView();
+    $('[data-dog-id=' + data._id + ']')[0].scrollIntoView();
+    console.log("newDogSuccess in app.js " + data._id[0]);
 
   };
-  function NewDogError(err){
-    console.log("errrorrr" +err);
+  function newDogError(err){
+    console.log("newDogError in app.js: " + err);
   };
 
   $('#dogTarget').on('click', '.delete-dog', handleDeleteClick);
@@ -64,42 +42,45 @@ $(document).ready(function(){
   $('#dogTarget').on('click', '.save-owner', handleSaveOwner);
 
     function handleUpdateOwner(e){
-      var $ownerRow = $(this).closest('.owner')
-      var ownerId = $ownerRow.data('human-id')
-      console.log("ID" + ownerId);
+      var $ownerRow = $(this).closest('.owner');
+      var ownerId = $ownerRow.data('human-id');
+      console.log("handleUpdateOwner in app.js, OWNER ID: " + ownerId);
 
       $ownerRow.find('.save-owner').toggleClass('hidden');
       $ownerRow.find('.update-owner').toggleClass('hidden');
-      var name = $ownerRow.find('span.owner-name').text();
-      console.log(name+"name");
-      $ownerRow.find('span.owner-name').html('<input class = "edit-owner-name" value ="' + name + '"></input><br/>');
-      var age = $ownerRow.find('span.owner-age').text();
-      console.log(age+"age");
-      $ownerRow.find('span.owner-age').html('<label><input class = "edit-owner-age" value ="' + age + '"></input>');
-      var gender = $ownerRow.find('span.owner-gender').text();
-      console.log(gender+"gender");
-      $ownerRow.find('span.owner-gender').html('<label><input class = "edit-owner-gender" value ="' + gender + '"></input>');
 
+      var name = $ownerRow.find('span.owner-name').text();
+      $ownerRow.find('span.owner-name').html('<input class = "edit-owner-name" value = "' + name + '" ></input><br/>');
+      console.log("handleUpdateOwner in app.js, Owner new name: " + name);
+
+      var age = $ownerRow.find('span.owner-age').text();
+      $ownerRow.find('span.owner-age').html('<label><input class = "edit-owner-age" value ="' + age + '"></input>');
+      console.log("handleUpdateOwner in app.js, Owner new age: " + age);
+
+      var gender = $ownerRow.find('span.owner-gender').text();
+      $ownerRow.find('span.owner-gender').html('<label><input class = "edit-owner-gender" value ="' + gender + '"></input>');
+      console.log("handleUpdateOwner in app.js, Owner new gender: " + gender);
     };
 
-      function handleSaveOwner(e){
-        var id = $(this).closest('.owner').data('human-id');
-        console.log("clicked save for " + id);
-        var $ownerRow = $('[data-human-id ='+id+']');
-        var ownerName = $ownerRow.find('.edit-owner-name').val();
-        var age = $ownerRow.find('.edit-owner-age').val();
-        var gender = $ownerRow.find('.edit-owner-gender').val();
-        console.log(ownerName,age,gender);
-        // db.Owner.findById(id, function(err,owner){
-        //   var email = owner.email;
-        //   var password = owner.password;
-        //   var imgOwner = owner.imgOwner;
-        var ownerData = {
-          ownerName : ownerName,
-          age : age,
-          gender : gender
-      };
+  function handleSaveOwner(e){
+      var id = $(this).closest('.owner').data('human-id');
+      console.log("handleSaveOwner in app.js, clicked save for this human's id: " + id);
 
+      var $ownerRow = $('[data-human-id ='+id+']');
+      var ownerName = $ownerRow.find('.edit-owner-name').val();
+      var age = $ownerRow.find('.edit-owner-age').val();
+      var gender = $ownerRow.find('.edit-owner-gender').val();
+      console.log("handleSaveOwner in app.js: " + "Owner name: " + ownerName + "/ Owner age: " + age + "/ Owner gender: " + gender);
+      // db.Owner.findById(id, function(err,owner){
+      //   var email = owner.email;
+      //   var password = owner.password;
+      //   var imgOwner = owner.imgOwner;
+      var ownerData = {
+        ownerName : ownerName,
+        age : age,
+        gender : gender
+      };
+      console.log("handleSaveOwner in app.js, Owner data to be called in ajax: " + ownerData);
 
     $.ajax({
       method:"PUT",
@@ -108,8 +89,10 @@ $(document).ready(function(){
       success: handleSaveSuccess,
       error:handleSaveError,
     });
+
     function handleSaveSuccess(data){
       var id = data._id;
+      console.log("handleSaveSuccess in app.js, Saved Owner ID: " + id);
       //$('[data-human-id='+id+']').remove();
       location.reload();
       //getDogSaveHtml(data);
@@ -118,51 +101,53 @@ $(document).ready(function(){
 
     }
     function handleSaveError(err){
-      console.log("error" + err);
+      console.log("handleSaveError in app.js. Did not save New Owner data. ERROR: " + err);
     }
   };
+
 
   function handleUpdateDog(e){
 
     var $dogRow = $(this).closest('.dog');
     var dogId = $dogRow.data('dog-id');
-    console.log('update for dog' + dogId)
+    console.log('handleUpdateDog in app.js. Updated dog Id: ' + dogId)
 
     $dogRow.find('.save-dog').toggleClass('hidden');
     $dogRow.find('.update-dog').toggleClass('hidden');
 
     var name = $dogRow.find('span.dog-name').text();
-    console.log(name+"name");
+    console.log("handleDogUpdate in app.js. Updated dog name: " + name);
     $dogRow.find('span.dog-name').html('<input class = "edit-dog-name" value ="' + name + '"></input><br/>');
+
     var isBig = $dogRow.find('span.dog-size').text();
-    console.log(isBig+"isBig");
+    console.log('handleDogUpdate in app.js. Updated dog size: ' + isBig);
     $dogRow.find('span.dog-size').html('<label><input class = "edit-dog-size" value ="' + isBig + '"></input>');
+
     var breed = $dogRow.find('span.dog-breed').text();
-    console.log(breed+"breed");
+    console.log("handleDogUpdate in app.js. Updated breed is: " + breed);
     $dogRow.find('span.dog-breed').html('<input class = "edit-dog-breed" value ="' + breed + '"></input>');
+
     var isSocialized = $dogRow.find('span.dog-temper').text();
-    console.log(isSocialized+"temper");
+    console.log("handleDogUpdate in app.js. Updated socialization status: " + isSocialized);
     $dogRow.find('span.dog-temper').html('<input type="checkbox" name = "isSocialized" >Play well</input>');
-
-
-    //
   };
-  function handleSaveDog(e){
+
+function handleSaveDog(e){
     var id = $(this).closest('.dog').data('dog-id');
-    console.log("clicked save for " + id);
+    console.log("handleSaveDog in app.js. Clicked save for Dog w/ id: " + id);
     var $dogRow = $('[data-dog-id ='+id+']');
     var name = $dogRow.find('.edit-dog-name').val();
     var breed = $dogRow.find('.edit-dog-breed').val();
     var isBig = $dogRow.find('edit-dog-size').val();
     var isSocialized = $('input[name=isSocialized]:checked').val();
-    console.log(isSocialized);
+    console.log("handleSaveDog in app.js. Dog socialization status: " + isSocialized);
     var dogData = {
       dogName : name,
       breed : breed,
       isBig : isBig,
       isSocialized : isSocialized
-  };
-
+      console.log("handleSaveDog in app.js. Full dog data: " + dogData)
+    };
 
     $.ajax({
       method:"PUT",
@@ -171,8 +156,10 @@ $(document).ready(function(){
       success: handleUpdateSuccess,
       error:handleUpdateError,
     });
+
     function handleUpdateSuccess(data){
       var id = data._id;
+      console.log("handleUpdateSuccess for handleSaveDog function in app.js. Successfully saved Dog ID: " + id);
       //$('[data-dog-id='+id+']').remove();
       location.reload();
       //getDogSaveHtml(data);
@@ -181,7 +168,7 @@ $(document).ready(function(){
 
     }
     function handleUpdateError(err){
-      console.log("error" + err);
+      console.log("handleUpdateSuccess for handleSaveDog function in app.js. ERROR in updating dog ID: " + err);
     }
   };
 
@@ -229,25 +216,31 @@ $(document).ready(function(){
                 </div>
               `;
   };
+
   function getAllDogsHtml(dogs){
     return dogs.map(getDogHtml);
-    console.log("going through all books");
-  }
+    console.log("getAllDogsHtml in app.js: Looking at all the rendered Dog Objects");
+  };
+
   function render(){
     $dogTarget.empty();
     var allHtml = getAllDogsHtml(allDogs);
+    console.log("render function in app.js. HTML for ALL dogs: " + allHtml)
     $dogTarget.append(allHtml);
+
   };
+
   function handleGetSuccess(data){
     allDogs = data;
     render();
+    console.log("handleGetSuccess in app.js, all dog data here: " , data)
   };
+
   function handleGetError(err){
-    console.log("bummer error" +err);
-    $dogTarget.text("failed to load, server working?")
+    console.log("handleGetError in app.js: " , err);
+    $dogTarget.text("Failed to load: handleGetError in app.js");
+
   };
-
-
 
   function handleDeleteClick(e){
     var id = $(this).closest('.dog').data('dog-id')
@@ -275,7 +268,7 @@ $(document).ready(function(){
            //re-render album
         getDogHtml(e);
           });
-          console.log("dog deleted");
+          console.log("Dog deleted");
     }
     function handleDeleteError(e){
       console.log(e + 'error');

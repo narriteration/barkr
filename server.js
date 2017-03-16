@@ -89,16 +89,19 @@ app.post('/api/owners', function create(req, res){
 
   db.Owner.createSecure(newOwner, function handleNewOwner(err, succ){
     if (err){
-      console.log("error saving" + err);
+      console.log("server.js: There was an error while creating a new Owner's password: " , err);
     }
-    console.log("saved " + succ.passwordDigest);
-
-
+    console.log("Successfully created a PASSWORD DIGEST for your new owner: " , succ.passwordDigest);
     db.Owner.authenticate(newOwner.email, newOwner.password, function(err, owner){
-      console.log("sessions: " , owner);
-      req.session.ownerId = owner._id; // correct?
+      if (err) {
+        res.redirect('www.google.com');
+        console.log("Authentication error in server.js")
+      }
+      console.log("You started a new session: " , owner);
+      req.session.ownerId = owner._id;
       //res.json(owner);
       res.redirect('/profile');
+      console.log("You are now signed in and on your profile");
     });
 
   });
@@ -107,14 +110,19 @@ app.post('/api/owners', function create(req, res){
 
 
 app.post('/sessions', function (req, res) {
-    // db.Owner.findOne({email: req.body.email}, function(err, foundOne){
-    console.log("LOGIN : ", req.body.email);
-    console.log("PASSWORD: ", req.body.password);
+    console.log("Owner email: ", req.body.email);
+    console.log("Owner password: ", req.body.password);
         db.Owner.authenticate(req.body.email, req.body.password, function(err, owner){
-        console.log("sessions: " , owner);
+        console.log("Initating a session for: " , owner);
+        if (err) {
+            console.log("Sorry something went wrong");
+            res.redirect('https://www.google.com');
+            console.log("POST error to /sessions in server.js");
+        }
         req.session.ownerId = owner._id; // correct?
         //res.json(owner);
         res.redirect('/profile');
+        console.log("Welcome to your profile. New session started successfully. Server.js");
       });
 });
 

@@ -48,6 +48,23 @@ body {
   /*background-position: center;*/
 }
 
+body.profile {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  background-image: url(../images/sujan-sundareswaran-583.jpg);
+  background-size: cover;
+}
+
+body.signup,
+body.login {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  background-image: url(../images/david-schap-128015.jpg);
+  background-size: cover;
+}
+
 h1 {
   font-size: 8em;
 }

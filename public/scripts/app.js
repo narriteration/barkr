@@ -49,19 +49,19 @@ $(document).ready(function(){
     allDogs.push(data);
     console.log("success booking  " + data.human);
     $('#newDogForm input').val('');
-    render();
-    $('[data-dog-id='+data._id+']')[0].scrollIntoView();
+    newDogRender(data);
+    //$('[data-dog-id='+data._id+']')[0].scrollIntoView();
 
   };
   function NewDogError(err){
     console.log("errrorrr" +err);
   };
 
-  $('#dogTarget').on('click', '.delete-dog', handleDeleteClick);
-  $('#dogTarget').on('click', '.update-dog', handleUpdateDog);
-  $('#dogTarget').on('click', '.save-dog', handleSaveDog);
-  $('#dogTarget').on('click', '.update-owner', handleUpdateOwner);
-  $('#dogTarget').on('click', '.save-owner', handleSaveOwner);
+  $('#newProfileDog').on('click', '.delete-dog', handleDeleteClick);
+  $('#newProfileDog').on('click', '.update-dog', handleUpdateDog);
+  $('#newProfileDog').on('click', '.save-dog', handleSaveDog);
+  $('#newProfileDog').on('click', '.update-owner', handleUpdateOwner);
+  $('#newProfileDog').on('click', '.save-owner', handleSaveOwner);
 
     function handleUpdateOwner(e){
       var $ownerRow = $(this).closest('.owner')
@@ -236,8 +236,14 @@ $(document).ready(function(){
   function render(){
     $dogTarget.empty();
     var allHtml = getAllDogsHtml(allDogs);
-    $dogTarget.append(allHtml);
+    $dogTarget.prepend(allHtml);
+
   };
+  function newDogRender(dog){
+    var newDog = getDogHtml(dog);
+    $('#newProfileDog').append(newDog);
+
+  }
   function handleGetSuccess(data){
     allDogs = data;
     render();

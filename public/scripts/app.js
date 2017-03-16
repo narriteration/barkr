@@ -3,12 +3,20 @@ console.log("Sanity Check: JS is working!");
  var allDogs = [];
 $(document).ready(function(){
 
-  var $dogTarget = $('#dogTarget')
+  var $dogTarget = $('#dogTarget');
   $.ajax({
     method: 'GET',
-    url: '/api/dogs',
+    url: '/feed',
     success: handleGetSuccess,
     error: handleGetError
+  });
+
+  var $newProfileDog = $('#newProfileDog');
+  $.ajax({
+    method: 'GET',
+    url: '/api/owners/:ownerId',
+    success: handleGetProfileSucc,
+    error: handleGetProfileError
   });
 
   $('#newDogForm').on('submit', function(e){
@@ -26,20 +34,20 @@ $(document).ready(function(){
     allDogs.push(data);
     console.log("newDogSuccess in app.js: " + data.human);
     $('#newDogForm input').val('');
-    render();
-    $('[data-dog-id=' + data._id + ']')[0].scrollIntoView();
     console.log("newDogSuccess in app.js " + data._id[0]);
-
+    newDogRender(data);
+    //$('[data-dog-id='+data._id+']')[0].scrollIntoView();
   };
+  
   function newDogError(err){
     console.log("newDogError in app.js: " + err);
   };
 
-  $('#dogTarget').on('click', '.delete-dog', handleDeleteClick);
-  $('#dogTarget').on('click', '.update-dog', handleUpdateDog);
-  $('#dogTarget').on('click', '.save-dog', handleSaveDog);
-  $('#dogTarget').on('click', '.update-owner', handleUpdateOwner);
-  $('#dogTarget').on('click', '.save-owner', handleSaveOwner);
+  $('#newProfileDog').on('click', '.delete-dog', handleDeleteClick);
+  $('#newProfileDog').on('click', '.update-dog', handleUpdateDog);
+  $('#newProfileDog').on('click', '.save-dog', handleSaveDog);
+  $('#newProfileDog').on('click', '.update-owner', handleUpdateOwner);
+  $('#newProfileDog').on('click', '.save-owner', handleSaveOwner);
 
     function handleUpdateOwner(e){
       var $ownerRow = $(this).closest('.owner');
@@ -98,13 +106,12 @@ $(document).ready(function(){
       //getDogSaveHtml(data);
       //render();
       //$('[data-dog-id='+id+']')[0].scrollIntoView();
-
     }
+
     function handleSaveError(err){
       console.log("handleSaveError in app.js. Did not save New Owner data. ERROR: " + err);
     }
   };
-
 
   function handleUpdateDog(e){
 
@@ -148,7 +155,6 @@ function handleSaveDog(e){
       isSocialized : isSocialized
       console.log("handleSaveDog in app.js. Full dog data: " + dogData)
     };
-
     $.ajax({
       method:"PUT",
       url:'/api/dogs/' + id,
@@ -192,6 +198,10 @@ function handleSaveDog(e){
               <span class="label">Save Changes</span>
               <span class="glyphicon glyphicon-ok"></span>
               </button>
+              <button id="delete" class="btn btn-danger delete-dog" type="delete">
+              <span class="label">Delete Dog</span>
+              <span class="glyphicon glyphicon-trash"></span>
+              </button>
               </div>
               <div class='col-sm-6 row owner border text-center' data-human-id =${(dog.human) ? dog.human._id : 'null'}>
               <img src="../images/authorPic.png" alt="author image">
@@ -209,10 +219,6 @@ function handleSaveDog(e){
                 <span class="label">Save Changes</span>
                 <span class="glyphicon glyphicon-ok"></span>
                 </button>
-                <button id="delete" class="btn btn-danger delete-dog" type="delete">
-                <span class="label">Delete Dog</span>
-                <span class="glyphicon glyphicon-trash"></span>
-                </button>
                 </div>
               `;
   };
@@ -227,11 +233,14 @@ function handleSaveDog(e){
     var allHtml = getAllDogsHtml(allDogs);
     console.log("render function in app.js. HTML for ALL dogs: " + allHtml)
     $dogTarget.append(allHtml);
-
   };
-
+  
+  function newDogRender(dog){
+    var newDog = getDogHtml(dog);
+    $('#newProfileDog').append(newDog);
+  }
+  
   function handleGetSuccess(data){
-    allDogs = data;
     render();
     console.log("handleGetSuccess in app.js, all dog data here: " , data)
   };
@@ -239,12 +248,22 @@ function handleSaveDog(e){
   function handleGetError(err){
     console.log("handleGetError in app.js: " , err);
     $dogTarget.text("Failed to load: handleGetError in app.js");
-
   };
 
-  function handleDeleteClick(e){
-    var id = $(this).closest('.dog').data('dog-id')
+function handleGetProfileSucc(data){
+  var newDog = getDogHtml(data);
+  $('#newProfileDog').append(newDog);
+}
+  
+function handleGetProfileError(err){
+  console.log("bummer error" +err);
+};
+  
+ function handleDeleteClick(e){
+    var id = $(this).closest('.dog').data('dog-id');
+    var ownerid = $(this).children('.owner').data('owner-id');
     console.log("clicked delete for"+id);
+    console.log("clicked for " +ownerid);
     $('#deleteModal').data('dog-id',id);
     $('#deleteModal').modal();
     console.log("modal pop up");
@@ -262,6 +281,7 @@ function handleSaveDog(e){
     function handleDeleteSuccess(e){
       $('#deleteModal').modal('hide');
       $(this).closest('.dog').empty();
+      //$(this).sibling('.owner').empty();
       $.get('/api/dogs/'+id, function(data){
         //remove current instance of album
         $('[data-dog-id=' + id + ']').fadeOut();

@@ -9,7 +9,9 @@ function index(req, res) {
       console.log("error getting dogs"+ err);
     }
     console.log(dogs);
-    res.json(dogs);
+    //res.json(dogs);
+    // res.sendFile('views/feed.ejs');
+    res.render('feed.ejs', {dogs: dogs})
   });
 };
 

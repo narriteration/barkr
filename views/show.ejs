@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link type="text/css" rel="stylesheet" href="/styles/main.css">
 
   <!-- bootstrap css -->
   <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -14,25 +13,17 @@
 
   <title>Profile</title>
 </head>
-<body class="profile">
+<body>
   <div class="container text-center">
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-
-        <h1>Welcome <%= owner.ownerName %>!</h1>
-
+        <h1 id = "color">Welcome</h1>
         <hr>
-        <h3>You're logged in as <%= owner.email %>.</h2>
+        <h2>Welcome! You're logged in as <%= owner.email %>.</h2>
       </div>
-      
-      <div>
-          <ul>
-              <li><img src="<%= owner.gender %>" alt="My image"></li>
-              <li><%= owner.age %></li>
-              <li><%= owner.imgOwner %></li>
-              <li><%= owner.email %></li>
-          </ul>
-          
+
+
+
   <div class="container">
       <h1 class="text-center clr-lightgreen">barkr</h1>
       <hr>
@@ -126,8 +117,6 @@
               </div>
           </div>
           <!-- /.modal-content -->
-          
-          
       </div>
       <!-- /.modal -->
   </div>

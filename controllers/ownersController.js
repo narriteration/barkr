@@ -47,8 +47,9 @@ function update(req, res){
     found.ownerName = req.body.ownerName;
     found.gender = req.body.gender;
     found.age = req.body.age;
-    found.email = req.body.email;
-    found.imgOwner = req.body.imgOwner;
+    found.email = found.email;
+    found.imgOwner = found.imgOwner;
+    found.password = found.password;
     found.save(function(err, person){
       if(err){
         console.log(err+"erororr");

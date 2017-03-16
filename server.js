@@ -26,6 +26,8 @@ app.get('/api/dogs', controllers.dog.index);
 app.get('/api/owners', controllers.owner.index);
 
 app.get('/api/dogs/:dogId', controllers.dog.show);
+
+app.get('/api/dogs/friendly', controllers.dog.showFriendly);
 // SIGNUP ROUTE
 app.get('/signup', function (req, res) {
   res.render('signup');

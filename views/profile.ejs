@@ -33,19 +33,19 @@
                       <nav>
                           <ul class="nav masthead-nav">
                               <li>
-                                  <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map">
+                                  <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map" onclick = "location.href = 'https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB'";>
                                       <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
                                       </span>
                                   </button>
                               </li>
                               <li>
-                                  <button type="button" class="btn btn-default" aria-label="Sign In">
+                                  <button a href = "/login" type="button" class="btn btn-default" aria-label="Sign In" onclick = "location.href = '/login'";>
                                       <span class="glyphicon glyphicon-user" aria-hidden="true">
                                       </span>
                                   </button>
                               </li>
                               <li>
-                                  <button type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
+                                  <button a href = "/signup" type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
                                       <span class="glyphicon glyphicon-plus" aria-hidden="true">
                                       </span>
                                   </button>
@@ -59,16 +59,16 @@
             <!---Begin body -->
               <di stav class="row text-center">
                     <div class="col-md-6 col-md-offset-3">
-                      <h1 class="cover-heading clr-lightgreen">barkr</h1>
+                      <h1 class="cover-heading clr-lightgreen"><a href="/">barkr</a></h1>
                       <h3>Profile</h3>
                       <h3>Welcome <%= owner.ownerName %>!</h3>
                       <hr>
                       <div>
                           <ul>
-                              <li><img src="<%= owner.gender %>" alt="My image"></li>
-                              <li><%= owner.age %></li>
-                              <li><%= owner.imgOwner %></li>
-                              <li><%= owner.email %></li>
+                              <li><img src="<%= owner.imgOwner %>" alt="My image"></li>
+                              <li>Age: <%= owner.age %></li>
+                              <li>Gender: <%= owner.gender %></li>
+                              <li>Email: <%= owner.email %></li>
                           </ul>
                       </div>
                     </div>
@@ -80,7 +80,7 @@
       <div class="row">
           <div class="col-md-6 col-md-offset-2">
 
-              <form class="form-inline" id="newDogForm">
+              <form id="newDogForm" class="text-center">
 
                     <div class="form-group">
                         <label for="title letters-spaced">Name</label>

@@ -45,15 +45,6 @@ app.get('/api/owners', controllers.owner.index);
 app.get('/api/owners', function(req, res){
   res.redirect('/sessions');
 });
-// // db.Owner.findOne({email: req.body.email}, function(err, foundOne){
-// console.log("LOGIN : ", req.body.email);
-// console.log("PASSWORD: ", req.body.password);
-//     db.Owner.authenticate(req.body.email, req.body.password, function(err, owner){
-//     console.log("sessions: " , owner);
-//     req.session.ownerId = owner._id; // correct?
-//     //res.json(owner);
-//     res.redirect('/profile');
-
 
 app.get('/api/dogs/:dogId', controllers.dog.show);
 app.get('/api/dogs/friendly', controllers.dog.showFriendly);
@@ -152,6 +143,8 @@ app.post('/owner', controllers.owner.create);
 app.delete('/api/owners/:ownerId', controllers.owner.destroy);
 
 
-app.listen(3000, function() {
-    console.log('Barkr app listening at http://localhost:3000/');
-});
+// app.listen(3000, function() {
+//     console.log('Barkr app listening at http://localhost:3000/');
+// });
+
+app.listen(process.env.PORT || 3000)

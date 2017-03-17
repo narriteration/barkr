@@ -3,138 +3,151 @@
 
 <head>
   <meta charset="utf-8">
-
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-  <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  <!-- Local CSS file -->
   <link type="text/css" rel="stylesheet" href="/styles/main.css">
 
   <title>Sign Up</title>
 
 </head>
 
-  <body class="signup">
+<body class="signup">
 
-    <!-- Begin Bootstrap -->
+    <!-- Begin Site Wrappers -->
         <div class="site-wrapper">
-
             <div class="site-wrapper-inner">
 
+                <!--Begin Container-->
                 <div class="container text-center">
-        <!--
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3"> -->
 
-        <!-- Begin Header -->
-        <div class="masthead clearfix">
-            <div class="container inner">
-                <h3 class="masthead-brand"></h3>
-                <nav>
-                    <ul class="nav masthead-nav">
-                        <li>
-                            <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map">
-                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                                </span>
-                            </button>
-                        </li>
-                        <li>
-                            <button a href = "/login" type="button" class="btn btn-default" aria-label="Sign In">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true">
-                                </span>
-                            </button>
-                        </li>
-                        <li>
-                            <button a href = "/signup" type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true">
-                                </span>
-                            </button>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!--End Header-->
-
-<!---Begin body -->
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1 class="cover-heading clr-lightgreen">barkr</h1>
-
-      <h3>Sign Up</h3>
-      <hr>
-
-            <form id="signup-form" method="POST" action="api/owners" data-toggle="validator" role="form">
-
-                  <div class="form-group">
-                      <label style="font-size:20px" for="ownerName">Name</label>
-                      <input type="text" class="form-control" name="ownerName" placeholder="Please enter your first and last name">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="imgOwner">Photo</label>
-                      <!-- (TODO: add validation for this image input: must contain .jpg, .png .... etc) -->
-                      <input type="text" class="form-control" name="imgOwner" placeholder="Please enter img URL">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="age">Age</label>
-                      <input type="number" pattern="[0-9]" data-maxlength="4" class="form-control" name="age" placeholder="How old are you?" data-error="Please enter valid age: must be a number under 5 characters" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label for="gender">Gender</label>
-                      <!-- TODO: make into a dropdown or checkboxes? -->
-                      <input type="text" class="form-control" name="gender" placeholder="Enter gender here or N/A">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" class="form-control" placeholder="Email" data-error="Enter valid email" autofocus>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="inputPassword" class="control-label">Password</label>
-                    <div class="form-inline row">
-                      <div class="form-group col-sm-6">
-                        <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
-                        <div class="help-block">Minimum of 6 characters</div>
+                      <!-- Begin Header -->
+                      <div class="masthead clearfix">
+                          <div class="container inner">
+                              <h3 class="masthead-brand"></h3>
+                              <nav>
+                                  <ul class="nav masthead-nav">
+                                      <li>
+                                          <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map" onclick = "location.href = 'https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB'";>
+                                              <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+                                              </span>
+                                          </button>
+                                      </li>
+                                      <li>
+                                          <button a href = "/login" type="button" class="btn btn-default" aria-label="Sign In" onclick = "location.href = '/login'";>
+                                              <span class="glyphicon glyphicon-user" aria-hidden="true">
+                                              </span>
+                                          </button>
+                                      </li>
+                                      <li>
+                                          <button a href = "/signup" type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
+                                              <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                                              </span>
+                                          </button>
+                                      </li>
+                                  </ul>
+                              </nav>
+                          </div>
                       </div>
-                      <div class="form-group col-sm-6">
-                        <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm Password" required>
-                        <div class="help-block with-errors"></div>
-                      </div>
-                    </div>
-                  </div>
+                      <!--End Header-->
 
-                  <div class="form-group">
-                    <input type="submit" value="Sign Up" class="submit btn btn-primary">
-                  </div>
 
-                  <a href="/login">Already have an account? Login</a>
+                    <!---Begin ROW -->
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
 
-            </form>
+                          <h1 class="cover-heading clr-lightgreen"><a href="/">barkr</a></h1>
+                          <h3>Sign Up</h3>
 
-        </div>
-      </div>
+                          <hr>
 
-  </div>
+                                <form id="signup-form" method="POST" action="api/owners" data-toggle="validator" role="form">
+
+                                      <div class="form-group">
+                                          <label for="ownerName">Name</label>
+                                          <input type="text" class="form-control" name="ownerName" placeholder="Please enter your first and last name">
+                                      </div>
+
+                                      <div class="form-group">
+                                          <label for="imgOwner">Photo</label>
+                                          <!-- (TODO: add validation for this image input: must contain .jpg, .png .... etc) -->
+                                          <input type="text" class="form-control" name="imgOwner" placeholder="Please enter img URL">
+                                      </div>
+
+                                      <div class="form-group">
+                                          <label for="age">Age</label>
+                                          <input type="number" pattern="[0-9]" data-maxlength="4" class="form-control" name="age" placeholder="How old are you?" data-error="Please enter valid age: must be a number under 5 characters" required>
+                                      </div>
+
+                                      <div class="form-group">
+                                          <label for="gender">Gender</label>
+                                          <!-- TODO: make into a dropdown or checkboxes? -->
+                                          <input type="text" class="form-control" name="gender" placeholder="Enter gender here or N/A">
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" class="form-control" placeholder="Email" data-error="Enter valid email" autofocus>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="inputPassword" class="control-label">Password</label>
+                                        <div class="form-inline row">
+                                          <div class="form-group col-sm-6">
+                                            <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+                                            <div class="help-block">Minimum of 6 characters</div>
+                                          </div>
+                                          <div class="form-group col-sm-6">
+                                            <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm Password" required>
+                                            <div class="help-block with-errors"></div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <input type="submit" value="Sign Up" class="submit btn btn-primary">
+                                      </div>
+
+                                      <a href="/login">Already have an account? Login</a>
+
+                                </form>
+
+                            </div>
+                          </div>
+                          <!--End Div ROW-->
+
+              </div>
+              <!--End Container-->
+
+
+              <!-- footer -->
+              <div class="container inner footer">
+                <footer id="footer">
+                    <!-- <h3 class="masthead-brand"></h3> -->
+                    <nav>
+                        <ul class="container nav masthead-nav-center">
+                            <li class="footer-block clr-lightgreen">
+                              Rosenbloom | Mangold 2017
+                              <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+                            </li>
+                        </ul>
+                    </nav>
+                  </footer>
+              </div>
+              <!--End footer -->
+
+
+
+    </div>
+</div>
+<!--End Site Wrappers-->
 
 
   </body>

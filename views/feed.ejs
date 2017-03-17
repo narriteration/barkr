@@ -2,73 +2,99 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title></title>
-  <!-- <script>dogs = <%= dogs %> </script> -->
-  <script src="public/scripts/feed.js"></script>
-</head>
-<body>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Begin Header -->
-    <div class="masthead clearfix">
-        <div class="container inner">
-            <h3 class="masthead-brand"></h3>
-            <nav>
-                <ul class="nav masthead-nav">
-                    <li>
-                        <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map">
-                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                            </span>
-                        </button>
-                    </li>
-                    <li>
-                        <button a href = "/login" type="button" class="btn btn-default" aria-label="Sign In">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true">
-                            </span>
-                        </button>
-                    </li>
-                    <li>
-                        <button a href = "/signup" type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true">
-                            </span>
-                        </button>
-                    </li>
-                </ul>
-            </nav>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/styles/main.css">
+
+  <script src="public/scripts/feed.js"></script>
+
+  <title>Social Feed</title>
+
+</head>
+
+<body class="feed">
+
+  <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+          <div class="container">
+
+            <!-- Begin Header -->
+            <div class="masthead clearfix">
+                <div class="container inner">
+                    <h3 class="masthead-brand"></h3>
+                    <nav>
+                        <ul class="nav masthead-nav">
+                            <li>
+                                <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map">
+                                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button a href = "/login" type="button" class="btn btn-default" aria-label="Sign In">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true">
+                                    </span>
+                                </button>
+                            </li>
+                            <li>
+                                <button a href = "/signup" type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!--End Header-->
+
+            <!--Begin Dog Social Feed-->
+            <div class="socialFeed">
+              <h1>Feeding Frenzy</h1>
+              <div id='dogTarget'>
+                <ul>
+                <% dogs %>
+                <% for(var i=0; i<dogs.length; i++) { %>
+                          <p>
+                          <div class='col-sm-6 row dog border text-center' data-dog-id = <%= dogs[i]._id %> >
+                          <img src="<%= dogs[i].imgDog %>" alt="book image">
+                          <br/>
+                            <span class='dog-name'><%=dogs[i].dogName%></span>
+                            is a <span class='dog-size'><%=(dogs[i].isBig === true ? 'large' : 'small')%></span><span class='dog-breed'> <%=dogs[i].breed%></span>.
+                            <br/>
+                            They are <span class='dog-temper'><%=(dogs[i].isSocialized === true ? 'great' : 'not very good')%></span> with other dogs.
+                            <br/>
+                            </p>
+
+                            </div>
+                            <div class='col-sm-6 row owner border text-center' data-human-id =<%=(dogs[i].human) ? dogs[i].human._id : 'null'%>>
+                            <img src="<%=(dogs[i].human) ? dogs[i].human.imgOwner : 'null'%>" alt="author image">
+                            <br/>
+                              <b><span class='owner-name'><%=(dogs[i].human) ? dogs[i].human.ownerName : 'null'%></span></b>
+                              is a <span class ='owner-age'><%=(dogs[i].human) ? dogs[i].human.age : 'null'%></span> year old <span class='owner-gender'><%=(dogs[i].human) ? dogs[i].human.gender : 'null'%></span>.
+                              <br/>
+                              Email is <span class='email'><%=(dogs[i].human) ? dogs[i].human.email : 'null'%><span>.
+                              </p>
+
+                              </div>
+                    <% } %>
+                  </ul>
+              </div>
+            </div>
+            <!--End Dog Social Feed-->
+
+
         </div>
     </div>
-    <!--End Header-->
+</div>
+<!--End Site Wrapper-->
 
-
-  <h1>Feeding Frenzy</h1>
-  <div id='dogTarget'>
-    <ul>
-    <% dogs %>
-    <% for(var i=0; i<dogs.length; i++) { %>
-              <p>
-              <div class='col-sm-6 row dog border text-center' data-dog-id = <%= dogs[i]._id %> >
-              <img src="<%= dogs[i].imgDog %>" alt="book image">
-              <br/>
-                <span class='dog-name'><%=dogs[i].dogName%></span>
-                is a <span class='dog-size'><%=(dogs[i].isBig === true ? 'large' : 'small')%></span><span class='dog-breed'> <%=dogs[i].breed%></span>.
-                <br/>
-                They are <span class='dog-temper'><%=(dogs[i].isSocialized === true ? 'great' : 'not very good')%></span> with other dogs.
-                <br/>
-                </p>
-
-                </div>
-                <div class='col-sm-6 row owner border text-center' data-human-id =<%=(dogs[i].human) ? dogs[i].human._id : 'null'%>>
-                <img src="<%=(dogs[i].human) ? dogs[i].human.imgOwner : 'null'%>" alt="author image">
-                <br/>
-                  <b><span class='owner-name'><%=(dogs[i].human) ? dogs[i].human.ownerName : 'null'%></span></b>
-                  is a <span class ='owner-age'><%=(dogs[i].human) ? dogs[i].human.age : 'null'%></span> year old <span class='owner-gender'><%=(dogs[i].human) ? dogs[i].human.gender : 'null'%></span>.
-                  <br/>
-                  Email is <span class='email'><%=(dogs[i].human) ? dogs[i].human.email : 'null'%><span>.
-                  </p>
-
-                  </div>
-        <% } %>
-
-  </ul>
-  </div>
 </body>
 </html>

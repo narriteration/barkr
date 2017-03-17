@@ -13,7 +13,6 @@ $(document).ready(function(){
     error: handleGetError
   });
 
-
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
     $.ajax({
@@ -35,7 +34,6 @@ $(document).ready(function(){
     error: handleGetProfileError
   });
 
-
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
     $.ajax({
@@ -53,7 +51,7 @@ $(document).ready(function(){
     $('#newDogForm input').val('');
     console.log("newDogSuccess in app.js " + data._id[0]);
     newDogRender(data);
-    //$('[data-dog-id='+data._id+']')[0].scrollIntoView();
+    // $('[data-dog-id=' + data._id + ']')[0].scrollIntoView();
   };
 
   function newDogError(err){
@@ -170,7 +168,7 @@ function handleSaveDog(e){
       breed : breed,
       isBig : isBig,
       isSocialized : isSocialized
-      console.log("handleSaveDog in app.js. Full dog data: " + dogData)
+    //  console.log("handleSaveDog in app.js. Full dog data: " + dogData)
     };
     $.ajax({
       method:"PUT",
@@ -223,10 +221,7 @@ function handleSaveDog(e){
               </div>
             <!--  <div class='col-sm-6 row owner border text-center' data-human-id =${(dog.human) ? dog.human._id : 'null'}>
               <img src="${(dog.human) ? dog.human.imgOwner : 'null'}" alt="human image">
-<<<<<<< HEAD
-=======
 
->>>>>>> origin
               <br/>
                 <b><span class='owner-name'>${(dog.human) ? dog.human.ownerName : 'null'}</span></b>
                 is a <span class ='owner-age'>${(dog.human) ? dog.human.age : 'null'}</span> year old <span class='owner-gender'>${(dog.human) ? dog.human.gender : 'null'}</span>.
@@ -351,7 +346,9 @@ function handleGetProfileError(err){
       $(this).closest('.dog').empty();
       //$(this).sibling('.owner').empty();
       $.get('/api/dogs/' + id, function(data){
+
         //remove current instance of album
+
         $('[data-dog-id=' + id + ']').fadeOut();
            //re-render album
         getDogHtml(e);

@@ -17,59 +17,65 @@
 
 <body class="profile">
 
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+  <!-- Begin Bootstrap -->
+  <div class="site-wrapper">
 
-        <!-- Begin Header -->
-          <div class="masthead clearfix">
-              <div class="container inner">
-                  <h3 class="masthead-brand"></h3>
-                  <nav>
-                      <ul class="nav masthead-nav">
-                          <li>
-                              <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map">
-                                  <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-                                  </span>
-                              </button>
-                          </li>
-                          <li>
-                              <button type="button" class="btn btn-default" aria-label="Sign In">
-                                  <span class="glyphicon glyphicon-user" aria-hidden="true">
-                                  </span>
-                              </button>
-                          </li>
-                          <li>
-                              <button type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
-                                  <span class="glyphicon glyphicon-plus" aria-hidden="true">
-                                  </span>
-                              </button>
-                          </li>
-                      </ul>
-                  </nav>
+      <div class="site-wrapper-inner row">
+
+          <div class="container text-center">
+          <!-- <div class="container col-md-6 col-md-offset-3 text-center"> -->
+
+
+              <!-- Begin Header -->
+              <div class="masthead clearfix">
+                  <div class="container inner">
+                      <h3 class="masthead-brand"></h3>
+                      <nav>
+                          <ul class="nav masthead-nav">
+                              <li>
+                                  <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map">
+                                      <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
+                                      </span>
+                                  </button>
+                              </li>
+                              <li>
+                                  <button type="button" class="btn btn-default" aria-label="Sign In">
+                                      <span class="glyphicon glyphicon-user" aria-hidden="true">
+                                      </span>
+                                  </button>
+                              </li>
+                              <li>
+                                  <button type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
+                                      <span class="glyphicon glyphicon-plus" aria-hidden="true">
+                                      </span>
+                                  </button>
+                              </li>
+                          </ul>
+                      </nav>
+                  </div>
               </div>
-          </div>
-          <!--End Heading-->
+              <!--End Header-->
 
-        <h1>Welcome <%= owner.ownerName %>!</h1>
-        <hr>
-        <h3>You're logged in as <%= owner.email %>.</h2>
-      </div>
+            <!---Begin body -->
+              <div class="row text-center">
+                    <div class="col-md-6 col-md-offset-3">
+                      <h1 class="cover-heading clr-lightgreen">barkr</h1>
+                      <h3>Profile</h3>
+                      <h3>Welcome <%= owner.ownerName %>!</h3>
+                      <hr>
+                      <div>
+                          <ul>
+                              <li><img src="<%= owner.gender %>" alt="My image"></li>
+                              <li><%= owner.age %></li>
+                              <li><%= owner.imgOwner %></li>
+                              <li><%= owner.email %></li>
+                          </ul>
+                      </div>
+                    </div>
+              </div>
 
-      <div>
-          <ul>
-              <li><img src="<%= owner.gender %>" alt="My image"></li>
-              <li><%= owner.age %></li>
-              <li><%= owner.imgOwner %></li>
-              <li><%= owner.email %></li>
-          </ul>
-
-          <!-- ```<a href="/login" type="button" class="btn btn-info" id="Login"Login</a>``` -->
-
-  <div class="container">
-      <h1 class="text-center clr-lightgreen">barkr</h1>
-      <hr>
-      <h3 class="text-center">Tell us more about your pup...</h3>
+  <div id="addDog"> <!--Start div addDog-->
+      <h3 class="text-center">Add a dog:</h3>
       <br>
       <div class="row">
           <div class="col-md-6 col-md-offset-2">
@@ -116,23 +122,18 @@
 
                   <br>
 
-                  <button type="submit" class="btn btn-default dogPost">Create Doggy profile</button>
+                  <button type="submit" class="btn btn-default dogPost">Create New Pup Profile</button>
 
               </form>
-          </div>
-      </div>
+            </div>
+        </div>
+    </div>
+    <!--End div addDog-->
 
-  </div>
-
-  </div>
-  <!-- /.col-lg-6 -->
-  </div>
-  <!-- /.row -->-->
 <div id = 'newProfileDog'>
-
 </div>
-<div id = 'newProfileOwner'>
 
+<div id = 'newProfileOwner'>
 </div>
 
   <!--Start modal-->

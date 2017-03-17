@@ -1,5 +1,8 @@
 console.log("Sanity Check: JS is working!");
  var allDogs = [];
+ //get stuff out of document.ready and refactor
+ //group by jquery selectors, success/error functions, ajax, etc
+ //break out into separate js files
 $(document).ready(function(){
 
   var $dogTarget = $('#dogTarget');
@@ -9,15 +12,6 @@ $(document).ready(function(){
     success: handleGetSuccess,
     error: handleGetError
   });
-
-  // var $newProfileDog = $('#newProfileDog');
-  // $.ajax({
-  //   method: 'GET',
-  //   url: '/api/owners/:ownerId',
-  //   success: handleGetProfileSucc,
-  //   error: handleGetProfileError
-  // });
-
 
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
@@ -30,10 +24,7 @@ $(document).ready(function(){
     })
   });
 
-//     url: '/feed',
-//     success: handleGetSuccess,
-//     error: handleGetError
-//   });
+
 
   var $newProfileDog = $('#newProfileDog');
   $.ajax({
@@ -356,8 +347,8 @@ function handleGetProfileError(err){
       //$(this).sibling('.owner').empty();
       $.get('/api/dogs/' + id, function(data){
 
+        //remove current instance of album
 
-            //remove current instance of album
         $('[data-dog-id=' + id + ']').fadeOut();
            //re-render album
         getDogHtml(e);

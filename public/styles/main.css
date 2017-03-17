@@ -83,7 +83,11 @@ h1 {
 
 .letters-spaced {
   letter-spacing: 1px;
+}
 
+img{
+  height:23vw;
+  width:23vw;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -167,6 +171,14 @@ h1 {
 /*
  * Cover
  */
+
+ .dog {
+   color:black;
+ }
+
+ .ownerId {
+   color:blue;
+ }
 
 .cover {
   padding: 0 20px;

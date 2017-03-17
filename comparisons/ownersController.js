@@ -1,5 +1,4 @@
 var db = require('../models');
-
 //DELETE /api/owners/:ownerId
 function destroy(req, res){
   var ownerId = req.params.ownerId;
@@ -9,14 +8,12 @@ function destroy(req, res){
     } res.json(deleteOwner);
   });
 };
-
 //
 function index(req, res){
   db.Owner.find({}, function (err, users){
     res.json(users);
   });
 };
-
 //POST /api/owners
 function create(req, res){
   var newOwner = {
@@ -47,8 +44,6 @@ function show(req, res){
     res.send({dogs: dogs});
   });
 }
-
-
 //Updating owner at /api/owners/:ownerId
 function update(req, res){
   var ownerId = req.params.ownerId;
@@ -66,11 +61,10 @@ function update(req, res){
       }
       console.log("Successfully updated profile: ", person);
       res.json(person);
-      // alert("Hooray! You successfully updated your barkr profile, " + found.ownerName);
+      //alert("Hooray! You successfully updated your barkr profile, " + found.ownerName);
     });
   });
 };
-
 // Export all modules
 module.exports = {
   destroy:destroy,

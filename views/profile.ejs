@@ -77,7 +77,9 @@
                     </div>
               </div>
 
-  <div id="addDog"> <!--Start div addDog-->
+
+  <!--Start div addDog-->
+  <div id="addDog">
       <h3 class="text-center">Add a dog:</h3>
       <br>
       <div class="row">
@@ -112,7 +114,7 @@
                   </div>
                   <div class="form-group">
                       <label for="human">Who is the owner?</label>
-                      <input type="text" class="form-control" name="human" placeholder="What's your first name?">
+                      <input type="text" class="form-control" name="human" placeholder="What's your first name?" required>
                   </div>
                   <div class="form-group">
                       <div class="checkbox">
@@ -135,12 +137,12 @@
 
 
     <!--Start render dog-->
-    <div class="">
+    <!-- <div class=""> -->
         <% dogs %>
         <% for(var i=0; i<dogs.length; i++) { %>
                 <p>
                 <div class='col-sm-6 row dog border text-center' data-dog-id = <%= dogs[i]._id %> >
-                <img src="<%= dogs[i].imgDog %>" alt="book image">
+                <img src="<%= dogs[i].imgDog %>" alt="dog image">
                 <br/>
                   <span class='dog-name'><%=dogs[i].dogName%></span>
                   is a <span class='dog-size'><%=(dogs[i].isBig === true ? 'large' : 'small')%></span><span class='dog-breed'> <%=dogs[i].breed%></span>.
@@ -162,16 +164,16 @@
                   </button>
                   </div>
           <% } %>
-      </div>
+      <!-- </div> -->
       <!--End Render Dog-->
 
 
-
-<div id = 'newProfileDog'>
+<!--
+<!-- <div id = 'newProfileDog'>
 </div>
 
 <div id = 'newProfileOwner'>
-</div>
+</div> --> -->
 
 <!-- Start modal content-->
 <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">

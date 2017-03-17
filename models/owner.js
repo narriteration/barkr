@@ -59,8 +59,6 @@ OwnerSchema.statics.authenticate = function (email, password, cb) {
 
 
 
-
-
 var Owner = mongoose.model('Owner', OwnerSchema);
 
 module.exports = Owner;

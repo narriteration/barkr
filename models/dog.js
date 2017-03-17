@@ -6,7 +6,7 @@ var Owner = require('./owner');
 var DogSchema = new Schema({
     dogName: String,
     breed: String,
-     human: //[Owner.schema],
+     human: //[Owner.schema], //could try this again
     {
       type:Schema.Types.ObjectId,
       ref: "Owner"

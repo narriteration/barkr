@@ -1,5 +1,8 @@
 console.log("Sanity Check: JS is working!");
  var allDogs = [];
+ //get stuff out of document.ready and refactor
+ //group by jquery selectors, success/error functions, ajax, etc
+ //break out into separate js files
 $(document).ready(function(){
 
   var $dogTarget = $('#dogTarget');
@@ -10,15 +13,6 @@ $(document).ready(function(){
     error: handleGetError
   });
 
-  // var $newProfileDog = $('#newProfileDog');
-  // $.ajax({
-  //   method: 'GET',
-  //   url: '/api/owners/:ownerId',
-  //   success: handleGetProfileSucc,
-  //   error: handleGetProfileError
-  // });
-<<<<<<< HEAD
-=======
 
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
@@ -31,10 +25,7 @@ $(document).ready(function(){
     })
   });
 
-//     url: '/feed',
-//     success: handleGetSuccess,
-//     error: handleGetError
-//   });
+
 
   var $newProfileDog = $('#newProfileDog');
   $.ajax({
@@ -43,7 +34,7 @@ $(document).ready(function(){
     success: handleGetProfileSucc,
     error: handleGetProfileError
   });
->>>>>>> origin
+
 
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
@@ -266,8 +257,7 @@ function handleSaveDog(e){
     $dogTarget.append(allHtml);
   };
 
-<<<<<<< HEAD
-=======
+
   function newDogRender(dog){
     var newDog = getDogHtml(dog);
     $('#newProfileDog').append(newDog);
@@ -311,8 +301,7 @@ function handleGetProfileError(err){
     console.log("render function in app.js. HTML for ALL dogs: " + allHtml)
     $dogTarget.append(allHtml);
   };
-  
->>>>>>> origin
+
   function newDogRender(dog){
     var newDog = getDogHtml(dog);
     $('#newProfileDog').append(newDog);
@@ -356,16 +345,12 @@ function handleGetProfileError(err){
         success: handleDeleteSuccess,
         error: handleDeleteError,
       });
-      
+
     function handleDeleteSuccess(e){
       $('#deleteModal').modal('hide');
       $(this).closest('.dog').empty();
       //$(this).sibling('.owner').empty();
       $.get('/api/dogs/' + id, function(data){
-<<<<<<< HEAD
-=======
-
->>>>>>> origin
         //remove current instance of album
         $('[data-dog-id=' + id + ']').fadeOut();
            //re-render album
@@ -373,13 +358,13 @@ function handleGetProfileError(err){
           });
           console.log("Dog deleted");
     }
-            
+
     function handleDeleteError(e){
       console.log(e + 'error');
     }
     });
-      
-      
+
+
     // function getDogSaveHtml(dog) {
     //   var html=( `<hr>
     //               <p>

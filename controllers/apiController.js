@@ -1,4 +1,5 @@
 function index(req, res) {
+  //nice and clean
   res.json({
     message: 'Hottest doggy dating site- Barkr!',
     documentation_url: 'https://github.com/sf-wdi-labs/Barkr',

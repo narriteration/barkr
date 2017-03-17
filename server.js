@@ -3,6 +3,7 @@ bodyParser = require('body-parser'),
 mongoose = require('mongoose'),
 session = require('express-session');
 
+//organze routes by api, user, etc
 var app = express();
 
 var db = require('./models');
@@ -17,7 +18,7 @@ app.use(express.static('public'));
 app.use(session({
   saveUninitialized: true,
   resave: true,
-  secret: 'pinkRhinosAndBedbugs',
+  secret: 'pinkRhinosAndBedbugs',//lol
   cookie: { maxAge: 30 * 60 * 1000 } // 30 minute cookie lifespan (in milliseconds)
 }));
 
@@ -67,7 +68,7 @@ app.get('/login', function (req, res) {
 });
 
 // show user profile page
-app.get('/profile', function (req, res) {
+app.get('/profile', function (req, res) {//good functionality, wrong location (put in controller)
   // find the user currently logged in
 
   db.Owner.findOne({_id: req.session.ownerId}, function (err, currentOwner) {
@@ -81,13 +82,6 @@ app.get('/profile', function (req, res) {
 });
 });
 
-//
-// app.get('/dogs', function (req,res){
-//   var id = req.session.ownerId;
-//   db.Dog.find({human: id}, function(err, dogs){
-//     res.render('profile.ejs', {dogs:dogs})
-//  });
-// });
 
 // POST routes
 

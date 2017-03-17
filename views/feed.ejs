@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html>
+<!-- could clean up a bit -->
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
 
-  <script src="public/scripts/feed.js"></script>
+    <script src="public/scripts/feed.js"></script>
 
-  <title>Social Feed</title>
+    <title>Social Feed</title>
 
 </head>
 
 <body class="feed">
 
 
-      <!-- Begin Site Wrappers -->
-      <div class="site-wrapper">
-          <div class="site-wrapper-inner">
+    <!-- Begin Site Wrappers -->
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
 
-              <!--Start container-->
-              <div class="container text-center">
+            <!--Start container-->
+            <div class="container text-center">
 
 
-                    <!-- Begin Header -->
-                    <div class="masthead clearfix">
-                        <div class="container inner">
-                            <h3 class="masthead-brand"></h3>
-                            <nav>
-                                <ul class="nav masthead-nav">
-                                    <li>
-                                        <button a href = "https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map" onclick = "location.href = 'https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB'";>
+                <!-- Begin Header -->
+                <div class="masthead clearfix">
+                    <div class="container inner">
+                        <h3 class="masthead-brand"></h3>
+                        <nav>
+                            <ul class="nav masthead-nav">
+                                <li>
+                                    <button a href="https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB" type="button" class="btn btn-default" aria-label="Map" onclick="location.href = 'https://www.google.com/maps?q=san+francisco+dog+parks+map&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiPvqXSs9zSAhUDxWMKHdAWDMQQ_AUICCgB'"
+                                        ;>
                                             <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
                                             </span>
                                         </button>
-                                    </li>
-                                    <li>
-                                        <button a href = "/login" type="button" class="btn btn-default" aria-label="Sign In" onclick = "location.href = '/login'";>
+                                </li>
+                                <li>
+                                    <button a href="/login" type="button" class="btn btn-default" aria-label="Sign In" onclick="location.href = '/login'" ;>
                                             <span class="glyphicon glyphicon-user" aria-hidden="true">
                                             </span>
                                         </button>
-                                    </li>
-                                    <li>
-                                        <button a href = "/signup" type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
+                                </li>
+                                <li>
+                                    <button a href="/signup" type="button" class="btn btn-default" aria-label="Create Profile" onclick="location.href = '/signup';">
                                             <span class="glyphicon glyphicon-plus" aria-hidden="true">
                                             </span>
                                         </button>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
-                    <!--End Header-->
+                </div>
+                <!--End Header-->
 
 
 
@@ -67,44 +70,43 @@
                     <div class="site-wrapper-inner">
                         <div class="container">
 
-            <!-- <div class="row">
+                            <!-- <div class="row">
               <div class="col-md-6 col-md-offset-3"> -->
 
-                              <h1 class="cover-heading clr-lightgreen"><a href="/">barkr</a></h1>
+                            <h1 class="cover-heading clr-lightgreen"><a href="/">barkr</a></h1>
 
-                              <h3 class="clr-darkgrey">Social Feed</h3>
-                              <hr>
+                            <h3 class="clr-darkgrey">Social Feed</h3>
+                            <hr>
 
-<!-- PUT DOGS FEEED BELOW HERE -->
+                            <!-- PUT DOGS FEEED BELOW HERE -->
 
 
-                              <!--Begin Dog Social Feed-->
-                              <div class="socialFeed">
+                            <!--Begin Dog Social Feed-->
+                            <div class="socialFeed">
                                 <div id='dogTarget'>
-                                  <ul>
-                                  <% dogs %>
-                                  <% for(var i=0; i<dogs.length; i++) { %>
-                                            <p>
-                                            <hr>
-                                            <div style="background-color: #d3d3d3" class='col-sm-6 row dog border text-center' data-dog-id = <%= dogs[i]._id %> >
-                                                <img src="<%= dogs[i].imgDog %>" alt="dog image">
-                                                <br/>
-                                                <span class='dog-name'><%=dogs[i].dogName%></span>
-                                                    is a <span class='dog-size'><%=(dogs[i].isBig === true ? 'large' : 'small')%></span><span class='dog-breed'> <%=dogs[i].breed%></span>.
-                                                <br/>
-                                                They are <span class='dog-temper'><%=(dogs[i].isSocialized === true ? 'great' : 'not very good')%></span> with other dogs.
-                                                <br/>
-                                                <hr>
-                                            </div>
+                                    <ul>
+                                        <% dogs %>
+                                            <% for(var i=0; i<dogs.length; i++) { %>
+                                                <p>
+                                                    <hr>
+                                                    <div style="background-color: #d3d3d3" class='col-sm-6 row dog border text-center' data-dog-id=< %=d ogs[i]._id %> >
+                                                        <img src="<%= dogs[i].imgDog %>" alt="dog image">
+                                                        <br/>
+                                                        <span class='dog-name'><%=dogs[i].dogName%></span> is a <span class='dog-size'><%=(dogs[i].isBig === true ? 'large' : 'small')%></span><span class='dog-breed'> <%=dogs[i].breed%></span>.
+                                                        <br/> They are <span class='dog-temper'><%=(dogs[i].isSocialized === true ? 'great' : 'not very good')%></span> with other dogs.
+                                                        <br/>
+                                                        <hr>
+                                                    </div>
 
 
-                                              <div style="background-color: grey" class='col-sm-6 row owner border text-center' data-human-id =<%=(dogs[i].human) ? dogs[i].human._id : 'null'%>>
-                                              <img src="<%=(dogs[i].human) ? dogs[i].human.imgOwner : 'null'%>" alt="author image">
-                                              <br/>
-                                                <b><span class='owner-name'><%=(dogs[i].human) ? dogs[i].human.ownerName : 'null'%></span></b>
-                                                is a <span class ='owner-age'><%=(dogs[i].human) ? dogs[i].human.age : 'null'%></span> year old <span class='owner-gender'><%=(dogs[i].human) ? dogs[i].human.gender : 'null'%></span>.
-                                                <br/>
-                                                Email is <span class='email'><%=(dogs[i].human) ? dogs[i].human.email : 'null'%><span>.
+                                                    <div style="background-color: grey" class='col-sm-6 row owner border text-center' data-human-id=<%=(dogs[i].human) ? dogs[i].human._id : 'null'%>>
+                                                        <img src="<%=(dogs[i].human) ? dogs[i].human.imgOwner : 'null'%>" alt="author image">
+                                                        <br/>
+                                                        <b><span class='owner-name'><%=(dogs[i].human) ? dogs[i].human.ownerName : 'null'%></span></b> is a <span class='owner-age'><%=(dogs[i].human) ? dogs[i].human.age : 'null'%></span> year old
+                                                        <span class='owner-gender'>
+                                                            <%=(dogs[i].human) ? dogs[i].human.gender : 'null'%>
+                                                                </span>.
+                                                        <br/> Email is <span class='email'><%=(dogs[i].human) ? dogs[i].human.email : 'null'%><span>.
                                               <hr>
                                               </p>
 
@@ -138,27 +140,28 @@
                             <li class="footer-block clr-lightgreen">
                               Rosenbloom | Mangold 2017
                               <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
-                            </li>
-                        </ul>
-                    </nav>
-                  </footer>
-              </div>
-              <!--End footer -->
+                                                        </li>
+                                    </ul>
+                                    </nav>
+                                    </footer>
+                                    </div>
+                                    <!--End footer -->
 
 
-          </div>
-      </div>
-      <!--End Site Wrappers-->
+                                </div>
+                            </div>
+                            <!--End Site Wrappers-->
 
 
-            <!-- footer -->
+                            <!-- footer -->
 
 
 
-        </div>
-    </div>
-</div>
-<!--End Site Wrapper-->
+                        </div>
+                    </div>
+                </div>
+                <!--End Site Wrapper-->
 
 </body>
+
 </html>

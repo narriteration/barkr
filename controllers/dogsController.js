@@ -1,3 +1,5 @@
+var nice = [];
+var naughty = [];
 var db = require('../models');
 
 // GET /api/dogs
@@ -8,16 +10,12 @@ function index(req, res) {
     if(err){
       console.log("error getting dogs"+ err);
     }
-    console.log(dogs);
-    //res.json(dogs);
-    // res.sendFile('views/feed.ejs');
+    console.log(dogs);//remove console logs in production
     res.render('feed.ejs', {dogs: dogs})
   });
 };
 
 //GET /api/dogs/friendly
-var nice = [];
-var naughty = [];
 function showFriendly(req, res){
   db.Dog.find({})
   .populate('human')
@@ -93,30 +91,6 @@ function update(req, res){
     foundIt.breed = req.body.breed;
     foundIt.isBig = req.body.isBig;
     foundIt.isSocialized = req.body.isSocialized;
-    //foundIt.human = foundIt.human;
-  //  console.log("I GFOUNDN ITTITITIR R F CBEU"+foundIt.human);
-    // foundIt.imgDog = req.body.imgDog;
-    //db.Owner.findOne({ownerName:req.body.human}, function(err, human){
-    //     if (human === null){
-    //       console.log('creating new person' +human);
-    //       console.log("name isssss" +req.body.human);
-    //     db.Owner.create({ownerName:req.body.ownerName, gender:req.body.gender, age:req.body.age, email:req.body.email, imgOwner:req.body.imgOwner}, function(err,newPerson){
-    //       updateDogAndOwner(foundIt, newPerson, res);
-    //     // foundIt.human = newThang;
-    //     // foundIt.save(function(err,doggy){
-    //     //   res.json(foundIt);
-    //       console.log(newPerson);
-    //     });
-    //   } else{
-    //     updateDogAndOwner(foundIt, human, res);
-    //     // foundIt.human = human;
-    //     // foundIt.save(function(err,doggy){
-    //     //   res.json(foundIt);
-    //       console.log(human+"DIS DAT PERSON");
-    //     }
-    //
-    //     function updateDogAndOwner(dog, person, res){
-    //       dog.human = person;
     var id = foundIt.human;
     console.log(id+"IDIDIDIDIDIDIDIDIDIIDIIDIDIDIII");
     db.Owner.findById(id, function(err, foundHuman){
@@ -130,7 +104,6 @@ function update(req, res){
             res.json(dog);
           });
         });
-// //   });
  });
 };
 

@@ -17,8 +17,7 @@ $(document).ready(function(){
   //   success: handleGetProfileSucc,
   //   error: handleGetProfileError
   // });
-<<<<<<< HEAD
-=======
+
 
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
@@ -43,7 +42,6 @@ $(document).ready(function(){
     success: handleGetProfileSucc,
     error: handleGetProfileError
   });
->>>>>>> origin
 
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
@@ -62,7 +60,7 @@ $(document).ready(function(){
     $('#newDogForm input').val('');
     console.log("newDogSuccess in app.js " + data._id[0]);
     newDogRender(data);
-    //$('[data-dog-id='+data._id+']')[0].scrollIntoView();
+    // $('[data-dog-id=' + data._id + ']')[0].scrollIntoView();
   };
 
   function newDogError(err){
@@ -179,7 +177,7 @@ function handleSaveDog(e){
       breed : breed,
       isBig : isBig,
       isSocialized : isSocialized
-      console.log("handleSaveDog in app.js. Full dog data: " + dogData)
+    //  console.log("handleSaveDog in app.js. Full dog data: " + dogData)
     };
     $.ajax({
       method:"PUT",
@@ -232,10 +230,7 @@ function handleSaveDog(e){
               </div>
             <!--  <div class='col-sm-6 row owner border text-center' data-human-id =${(dog.human) ? dog.human._id : 'null'}>
               <img src="${(dog.human) ? dog.human.imgOwner : 'null'}" alt="human image">
-<<<<<<< HEAD
-=======
 
->>>>>>> origin
               <br/>
                 <b><span class='owner-name'>${(dog.human) ? dog.human.ownerName : 'null'}</span></b>
                 is a <span class ='owner-age'>${(dog.human) ? dog.human.age : 'null'}</span> year old <span class='owner-gender'>${(dog.human) ? dog.human.gender : 'null'}</span>.
@@ -266,8 +261,7 @@ function handleSaveDog(e){
     $dogTarget.append(allHtml);
   };
 
-<<<<<<< HEAD
-=======
+
   function newDogRender(dog){
     var newDog = getDogHtml(dog);
     $('#newProfileDog').append(newDog);
@@ -311,8 +305,7 @@ function handleGetProfileError(err){
     console.log("render function in app.js. HTML for ALL dogs: " + allHtml)
     $dogTarget.append(allHtml);
   };
-  
->>>>>>> origin
+
   function newDogRender(dog){
     var newDog = getDogHtml(dog);
     $('#newProfileDog').append(newDog);
@@ -356,30 +349,28 @@ function handleGetProfileError(err){
         success: handleDeleteSuccess,
         error: handleDeleteError,
       });
-      
+
     function handleDeleteSuccess(e){
       $('#deleteModal').modal('hide');
       $(this).closest('.dog').empty();
       //$(this).sibling('.owner').empty();
       $.get('/api/dogs/' + id, function(data){
-<<<<<<< HEAD
-=======
 
->>>>>>> origin
-        //remove current instance of album
+
+            //remove current instance of album
         $('[data-dog-id=' + id + ']').fadeOut();
            //re-render album
         getDogHtml(e);
           });
           console.log("Dog deleted");
     }
-            
+
     function handleDeleteError(e){
       console.log(e + 'error');
     }
     });
-      
-      
+
+
     // function getDogSaveHtml(dog) {
     //   var html=( `<hr>
     //               <p>

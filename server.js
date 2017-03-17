@@ -5,7 +5,7 @@ session = require('express-session');
 
 var app = express();
 var db = require('./models');
-var Owner = require('./models/owner');
++var Owner = db.Owner;
 
 var controllers = require('./controllers');
 

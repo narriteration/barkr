@@ -6,27 +6,21 @@ session = require('express-session');
 var app = express();
 
 var db = require('./models');
-var controllers = require('./controllers');
+
 var Owner = require('./models/owner');
-
-// var Owner = db.Owner;
-
+var controllers = require('./controllers');
 
 app.use(express.static('public'));
-
 app.use(session({
   saveUninitialized: true,
   resave: true,
   secret: 'pinkRhinosAndBedbugs',
   cookie: { maxAge: 30 * 60 * 1000 } // 30 minute cookie lifespan (in milliseconds)
 }));
-
 app.set('view engine', 'ejs')
-
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs');
 mongoose.createConnection('mongodb://localhost/barkr');
-
 
 // GET routes
 
@@ -52,8 +46,6 @@ app.get('/api/owners', function(req, res){
 //     req.session.ownerId = owner._id; // correct?
 //     //res.json(owner);
 //     res.redirect('/profile');
-
-
 app.get('/api/dogs/:dogId', controllers.dog.show);
 app.get('/api/dogs/friendly', controllers.dog.showFriendly);
 
@@ -80,17 +72,13 @@ app.get('/profile', function (req, res) {
   });
 });
 });
-
-//
 // app.get('/dogs', function (req,res){
 //   var id = req.session.ownerId;
 //   db.Dog.find({human: id}, function(err, dogs){
 //     res.render('profile.ejs', {dogs:dogs})
 //  });
 // });
-
 // POST routes
-
 app.post('/api/dogs', controllers.dog.create);
 app.post('/api/owners', function create(req, res){
   var newOwner = {
@@ -121,8 +109,6 @@ app.post('/api/owners', function create(req, res){
   });
 });
 
-
-
 app.post('/sessions', function (req, res) {
     console.log("Owner email: ", req.body.email);
     console.log("Owner password: ", req.body.password);
@@ -138,26 +124,18 @@ app.post('/sessions', function (req, res) {
         //res.json(owner);
         res.redirect('/profile');
         console.log("Welcome to your profile. New session started successfully. Server.js");
-
       });
 });
 
 // DELETE routes
-
 app.delete('/api/dogs/:dogId', controllers.dog.destroy);
 app.delete('/api/owners/:ownerId', controllers.owner.destroy);
-
 // PUT  routes
-
 app.put('/api/dogs/:dogId', controllers.dog.update);
 app.put('/api/owners/:ownerId', controllers.owner.update);
-
-
 // Sign up route - creates a new user with a secure password
 app.post('/owner', controllers.owner.create);
 app.delete('/api/owners/:ownerId', controllers.owner.destroy);
-
-
 app.listen(3000, function() {
     console.log('Barkr app listening at http://localhost:3000/');
 });

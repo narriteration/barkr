@@ -1,3 +1,4 @@
+
 console.log("Sanity Check: JS is working!");
  var allDogs = [];
 $(document).ready(function(){
@@ -17,6 +18,30 @@ $(document).ready(function(){
   //   success: handleGetProfileSucc,
   //   error: handleGetProfileError
   // });
+
+  $('#newDogForm').on('submit', function(e){
+    e.preventDefault();
+    $.ajax({
+      method:"POST",
+      url:'/api/dogs',
+      data:$(this).serializeArray(),
+      success:newDogSuccess,
+      error:newDogError
+    })
+  });
+
+//     url: '/feed',
+//     success: handleGetSuccess,
+//     error: handleGetError
+//   });
+
+  var $newProfileDog = $('#newProfileDog');
+  $.ajax({
+    method: 'GET',
+    url: '/api/owners/:ownerId',
+    success: handleGetProfileSucc,
+    error: handleGetProfileError
+  });
 
   $('#newDogForm').on('submit', function(e){
     e.preventDefault();
@@ -188,6 +213,7 @@ function handleSaveDog(e){
               <br/>
               They are <span class='dog-temper'>${(dog.isSocialized === true ? 'great' : 'not very good')}</span> with other dogs.
               <br/>
+
               </p>
               <button id="updateDog" class="btn btn-info update-dog" type="update">
               <span class="label">Update Dog</span>
@@ -204,6 +230,7 @@ function handleSaveDog(e){
               </div>
             <!--  <div class='col-sm-6 row owner border text-center' data-human-id =${(dog.human) ? dog.human._id : 'null'}>
               <img src="${(dog.human) ? dog.human.imgOwner : 'null'}" alt="human image">
+
               <br/>
                 <b><span class='owner-name'>${(dog.human) ? dog.human.ownerName : 'null'}</span></b>
                 is a <span class ='owner-age'>${(dog.human) ? dog.human.age : 'null'}</span> year old <span class='owner-gender'>${(dog.human) ? dog.human.gender : 'null'}</span>.
@@ -264,6 +291,50 @@ function handleGetProfileError(err){
     console.log("clicked delete for" + id);
     console.log("clicked for " + ownerid);
     $('#deleteModal').data('dog-id', id);
+  };
+
+  function getAllDogsHtml(dogs){
+    return dogs.map(getDogHtml);
+    console.log("getAllDogsHtml in app.js: Looking at all the rendered Dog Objects");
+  };
+
+  function render(){
+    $dogTarget.empty();
+    var allHtml = getAllDogsHtml(allDogs);
+    console.log("render function in app.js. HTML for ALL dogs: " + allHtml)
+    $dogTarget.append(allHtml);
+  };
+  
+  function newDogRender(dog){
+    var newDog = getDogHtml(dog);
+    $('#newProfileDog').append(newDog);
+  }
+  
+  function handleGetSuccess(data){
+    render();
+    console.log("handleGetSuccess in app.js, all dog data here: " , data)
+  };
+
+  function handleGetError(err){
+    console.log("handleGetError in app.js: " , err);
+    $dogTarget.text("Failed to load: handleGetError in app.js");
+  };
+
+function handleGetProfileSucc(data){
+  var newDog = getDogHtml(data);
+  $('#newProfileDog').append(newDog);
+}
+  
+function handleGetProfileError(err){
+  console.log("bummer error" +err);
+};
+  
+ function handleDeleteClick(e){
+    var id = $(this).closest('.dog').data('dog-id');
+    var ownerid = $(this).children('.owner').data('owner-id');
+    console.log("clicked delete for"+id);
+    console.log("clicked for " +ownerid);
+    $('#deleteModal').data('dog-id',id);
     $('#deleteModal').modal();
     console.log("modal pop up");
     };
@@ -277,11 +348,13 @@ function handleGetProfileError(err){
         success: handleDeleteSuccess,
         error: handleDeleteError,
       });
+      
     function handleDeleteSuccess(e){
       $('#deleteModal').modal('hide');
       $(this).closest('.dog').empty();
       //$(this).sibling('.owner').empty();
       $.get('/api/dogs/' + id, function(data){
+
         //remove current instance of album
         $('[data-dog-id=' + id + ']').fadeOut();
            //re-render album
@@ -289,10 +362,13 @@ function handleGetProfileError(err){
           });
           console.log("Dog deleted");
     }
+            
     function handleDeleteError(e){
       console.log(e + 'error');
     }
     });
+      
+      
     // function getDogSaveHtml(dog) {
     //   var html=( `<hr>
     //               <p>

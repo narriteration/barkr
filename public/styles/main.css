@@ -2,23 +2,32 @@
  * Globals
  */
 
+
+dog-name {
+  text: bold
+}
 /* Links */
 a,
-a:focus,
-a:hover {
-  color: #fff;
+a:hover,
+a:active {
+  color: #59f442;
 }
 
+
 /* Custom default button */
-.btn-default,
-.btn-default:hover,
-.btn-default:focus {
+.btn-default {
   color: #333;
   text-shadow: none; /* Prevent inheritence from `body` */
   background-color: #fff;
   border: 1px solid #fff;
 }
 
+.btn-default:hover,
+.btn-default:focus {
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
 
 /*
  * Base structure
@@ -28,8 +37,10 @@ html,
 body {
   height: 100%;
   background-color: #fff;
+  letter-spacing: 1px;
 }
-body {
+
+body.splash {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
@@ -38,14 +49,51 @@ body {
   /*background-position: center;*/
 }
 
+body.profile {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  background-image: url(../images/sujan-sundareswaran-583.jpg);
+  background-size: cover;
+}
+
+body.feed {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  /*background-color: blue;*/
+  /*background-image: url(../images/marc-wilnauer-2834.jpg)*/
+  /*background-size: cover;*/
+  background-repeat: repeat-y;
+
+}
+
+body.signup,
+body.login {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  background-image: url(../images/david-schap-128015.jpg);
+  background-size: cover;
+}
+
+h1 {
+  font-size: 8em;
+}
+
+.letters-spaced {
+  letter-spacing: 1px;
+
+}
+
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
   display: table;
   width: 100%;
   height: 600px;
   /*background-color: #333;    DELETED TO ALLOW BACKGROUND PHOTO TO APPEAR*/
-  /*height: 100%; */
-  /*min-height: 100%;*/
+  height: 100%;
+  min-height: 100%;
 }
 .site-wrapper-inner {
   display: table-cell;
@@ -60,7 +108,6 @@ body {
 .inner {
   padding: 30px;
 }
-
 
 /*
  * Header
@@ -90,12 +137,14 @@ body {
   background-color: transparent;
   border-bottom-color: #a9a9a9;
   border-bottom-color: rgba(255,255,255,.25);
+  border-bottom-color: #59f442;
+
 }
 .masthead-nav > .active > button,
 .masthead-nav > .active > button:hover,
 .masthead-nav > .active > a:focus {
   color: #fff;
-  border-bottom-color: #fff;
+  border-bottom-color: #59f442;
 }
 
 @media (min-width: 768px) {
@@ -105,8 +154,15 @@ body {
   .masthead-nav {
     float: right;
   }
+  .masthead-nav-center {
+    float: center;
+  }
 }
 
+.footer {
+    padding-top: 60px;
+    font-weight: 100;
+}
 
 /*
  * Cover
@@ -120,8 +176,12 @@ body {
   font-weight: bold;
 }
 
-.cover-heading {
+.clr-lightgreen {
   color: #59f442;
+}
+
+.clr-darkgrey {
+  color: grey;
 }
 
 /*

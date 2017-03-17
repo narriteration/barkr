@@ -23,7 +23,6 @@ var dogsList = [
     isBig:true,
     isSocialized:true,
     human:"Jenny Smith",
-
     imgDog: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-culture/022063-3d-transparent-glass-icon-culture-book3-open.png"
   },
   {
@@ -48,7 +47,6 @@ var dogsList = [
     isBig:true,
     isSocialized:false,
     human:"Tommy Tables",
-
     imgDog: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/3d-transparent-glass-icons-culture/022063-3d-transparent-glass-icon-culture-book3-open.png"
   }
 
@@ -87,6 +85,7 @@ var ownersList = [
 
 db.Owner.remove({}, function(err, owners){
   console.log("removed owners "+ owners);
+  //creating new instances of owners from ownerslist
   db.Owner.create(ownersList, function (err, owners){
     if(err){
       return console.log("error creating" +err);
@@ -95,6 +94,7 @@ db.Owner.remove({}, function(err, owners){
 
     db.Dog.remove({}, function (err, dogs){
       console.log("removed all dogs");
+      //going through each obj in dogsList and seting attr
       dogsList.forEach(function(dogData){
         var dog = new db.Dog({
           dogName: dogData.dogName,
@@ -104,12 +104,15 @@ db.Owner.remove({}, function(err, owners){
           imgDog: dogData.imgDog,
         });
         console.log("owner found is HEREEE ", dogData.human);
+        //pairing the owner to its dog by checking human of dog to owners name
         db.Owner.findOne({ownerName: dogData.human}, function(err, foundOwner){
           console.log("found owner: " + foundOwner.ownerName +" for dog: " + dogData.dogName);
           if(err){
           return  console.log("error finding owner "+err);
           }
+          //putting entire owner object inside dog
           dog.human = foundOwner;
+          console.log('LOOKK!!!!!!' + dog.human);
           dog.save(function(err,savedDog){
             if(err){
               return console.log("err saving " + err);

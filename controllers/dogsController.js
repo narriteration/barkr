@@ -8,10 +8,30 @@ function index(req, res) {
     if(err){
       console.log("error getting dogs"+ err);
     }
-    res.json(dogs);
+    console.log(dogs);
+    //res.json(dogs);
+    // res.sendFile('views/feed.ejs');
+    res.render('feed.ejs', {dogs: dogs})
   });
 };
 
+//GET /api/dogs/friendly
+var nice = [];
+var naughty = [];
+function showFriendly(req, res){
+  db.Dog.find({})
+  .populate('human')
+  .exec(function(dogs){
+    dogs.forEach(function(dog){
+      if(dog.isSocialized === true){
+        nice.push(dog);
+      }else{
+        naughty.push(dog);
+      }
+    });
+    res.json(nice);
+  });
+};
 
 // GET /api/dogs/:dogId
 function show(req,res) {
@@ -25,6 +45,7 @@ function show(req,res) {
     res.json(foundDog);
   });
 };
+
 
 // POST /api/dogs
 function create(req, res) {
@@ -72,39 +93,45 @@ function update(req, res){
     foundIt.breed = req.body.breed;
     foundIt.isBig = req.body.isBig;
     foundIt.isSocialized = req.body.isSocialized;
-    foundIt.imgDog = req.body.imgDog;
-    db.Owner.findOne({ownerName:req.body.human}, function(err, human){
-        if (human === null){
-          console.log('creating new person' +human);
-          console.log("name isssss" +req.body.human);
-        db.Owner.create({ownerName:req.body.ownerName, gender:req.body.gender, age:req.body.age, email:req.body.email, imgOwner:req.body.imgOwner}, function(err,newPerson){
-          updateDogAndOwner(foundIt, newPerson, res);
-        // foundIt.human = newThang;
-        // foundIt.save(function(err,doggy){
-        //   res.json(foundIt);
-          console.log(newPerson);
-        });
-      } else{
-        updateDogAndOwner(foundIt, human, res);
-        // foundIt.human = human;
-        // foundIt.save(function(err,doggy){
-        //   res.json(foundIt);
-          console.log(human+"DIS DAT PERSON");
+    //foundIt.human = foundIt.human;
+  //  console.log("I GFOUNDN ITTITITIR R F CBEU"+foundIt.human);
+    // foundIt.imgDog = req.body.imgDog;
+    //db.Owner.findOne({ownerName:req.body.human}, function(err, human){
+    //     if (human === null){
+    //       console.log('creating new person' +human);
+    //       console.log("name isssss" +req.body.human);
+    //     db.Owner.create({ownerName:req.body.ownerName, gender:req.body.gender, age:req.body.age, email:req.body.email, imgOwner:req.body.imgOwner}, function(err,newPerson){
+    //       updateDogAndOwner(foundIt, newPerson, res);
+    //     // foundIt.human = newThang;
+    //     // foundIt.save(function(err,doggy){
+    //     //   res.json(foundIt);
+    //       console.log(newPerson);
+    //     });
+    //   } else{
+    //     updateDogAndOwner(foundIt, human, res);
+    //     // foundIt.human = human;
+    //     // foundIt.save(function(err,doggy){
+    //     //   res.json(foundIt);
+    //       console.log(human+"DIS DAT PERSON");
+    //     }
+    //
+    //     function updateDogAndOwner(dog, person, res){
+    //       dog.human = person;
+    var id = foundIt.human;
+    console.log(id+"IDIDIDIDIDIDIDIDIDIIDIIDIDIDIII");
+    db.Owner.findById(id, function(err, foundHuman){
+    foundIt.human = foundHuman;
+     console.log(foundHuman+"human");
+      foundIt.save(function(err,dog){
+        if(err){
+          console.log("error saving " + err);
         }
-
-        function updateDogAndOwner(dog, person, res){
-          dog.human = person;
-          dog.save(function(err,doggy){
-            if(err){
-              console.log(err+"errororrr");
-            }
-            console.log("good job " + person);
+            console.log("good job " + dog);
             res.json(dog);
           });
-        };
-
-  });
-});
+        });
+// //   });
+ });
 };
 
 
@@ -124,4 +151,5 @@ module.exports = {
   show:show,
   update:update,
   destroy:destroy,
+  showFriendly:showFriendly,
 };
